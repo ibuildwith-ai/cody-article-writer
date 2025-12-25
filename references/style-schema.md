@@ -63,7 +63,7 @@ Style guides are saved as JSON files in `cody-projects/article-writer/styles/`.
 | Field | Valid Values | Description |
 |-------|--------------|-------------|
 | opening | `direct`, `contextual`, `narrative`, `tension` | How to begin the article |
-| closing | `summary`, `call_to_action`, `open_question`, `callback`, `provocation` | How to end the article |
+| closing | `summary`, `call_to_action`, `open_question`, `callback`, `provocation`, `key_takeaways` | How to end the article |
 
 **Opening types:**
 - `direct` — State the main point immediately
@@ -77,6 +77,7 @@ Style guides are saved as JSON files in `cody-projects/article-writer/styles/`.
 - `open_question` — Leave them thinking
 - `callback` — Reference the opening
 - `provocation` — Challenge assumptions
+- `key_takeaways` — Bullet list of main insights
 
 ### Context
 

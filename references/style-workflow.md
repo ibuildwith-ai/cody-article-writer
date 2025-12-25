@@ -63,6 +63,7 @@ Closing style (select one or more):
 - Open Question: Leave them thinking
 - Callback: Reference the opening
 - Provocation: Challenge assumptions
+- Key Takeaways: Bullet list of main insights
 ```
 
 **Context Settings:**
@@ -85,15 +86,12 @@ Finally, let's set the context.
    0 = Peer, equal footing | 10 = Expert teaching
 ```
 
-### Phase 2: Review & Finalize
+### Phase 2: Review Settings
 
-Present the complete style guide configuration:
+Present the style guide settings for approval (without name/description yet):
 
 ```
 Here's your style guide configuration:
-
-**Name:** [Style Name]
-**Description:** [Brief description]
 
 **Voice:**
 - Tone: 7/10 (leaning professional)
@@ -117,10 +115,38 @@ Here's your style guide configuration:
 - Audience Knowledge: 4/10
 - Relationship: 7/10 (expert positioning)
 
-Does this look correct? Say "save" to save it, or tell me what to adjust.
+Does this look correct, or would you like to adjust anything?
 ```
 
-### Phase 3: Save
+### Phase 3: Name & Description
+
+After settings are approved, ask for name and description. Suggest options but require user approval.
+
+```
+Great! Now let's name this style.
+
+**Suggested name:** "Professional LinkedIn"
+**Suggested description:** "For thought leadership articles targeting enterprise product managers"
+
+Would you like to use these, or would you prefer different name/description?
+```
+
+Wait for user to approve or provide alternatives for both name and description.
+
+### Phase 4: Final Confirmation & Save
+
+Show the complete style with approved name and description before saving:
+
+```
+Here's your final style guide:
+
+**Name:** Professional LinkedIn
+**Description:** For thought leadership articles targeting enterprise product managers
+
+[Show all settings again]
+
+Ready to save? Say "save" to confirm, or tell me what to adjust.
+```
 
 On confirmation:
 1. Generate filename from style name (kebab-case)

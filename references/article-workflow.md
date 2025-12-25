@@ -45,12 +45,41 @@ Message on creation: "I've created `./cody-projects/article-writer/` to store yo
 
 **Goal:** Select or create the style guide for this article.
 
-1. Ask: "Which style guide would you like to use?"
-2. Options:
-   - List existing styles from `cody-projects/article-writer/styles/`
-   - Create new style (triggers Style Guide Workflow)
-3. Load selected style
-4. Extract **voice** and **context** settings for thesis phase
+1. Check if any styles exist in `cody-projects/article-writer/styles/`
+
+2. **If styles exist:**
+   ```
+   I found these existing styles:
+   
+   1. **Professional LinkedIn**
+      For thought leadership articles targeting enterprise product managers
+   
+   2. **Casual Newsletter**
+      Conversational tone for weekly subscriber updates
+   
+   Would you like to use one of these, or create a new style?
+   ```
+   - User selects existing → Load that style
+   - User wants new → Offer creation options (see below)
+
+3. **If no styles exist:**
+   ```
+   You don't have any styles saved yet. Let's create one for this article.
+   ```
+   - Offer creation options (see below)
+
+4. **Style creation options:**
+   ```
+   How would you like to create your style?
+   
+   1. **Guided creation** — I'll walk you through each setting with questions
+   2. **Starter style** — I'll suggest a style based on what you've told me, then you can adjust
+   ```
+   - Option 1 → Trigger full Style Guide Workflow (Phase 1: Configuration)
+   - Option 2 → Generate suggested style from topic/context, go directly to Phase 2: Review Settings
+
+5. Load selected/created style
+6. Extract **voice** and **context** settings for thesis phase
 
 **Draft state:** Update `style_guide` reference
 

@@ -1,5 +1,8 @@
 ---
 name: cody-article-writer
+metadata:
+  author: ibuildwith.ai
+  version: "1.0"
 description: >
   Cody Article Writer: Article writing workflow with customizable style guides. Use when the user wants to 
   write articles, blog posts, or long-form content. Handles the full workflow: topic 
