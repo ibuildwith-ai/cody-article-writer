@@ -151,7 +151,10 @@ For each section:
 2. Present to user
 3. Iterate until approved
 4. Mark section `status: "complete"`
-5. Move to next section
+5. Update working draft file: `drafts/[draft-id].md`
+6. Move to next section
+
+**Working draft file:** Create `drafts/[draft-id].md` when first section is written. Update it after each section is completed. This gives the user a readable file to review instead of dumping content in chat.
 
 **Draft state:** Update `phase: "writing"`, save completed sections to `sections` object
 
@@ -160,14 +163,14 @@ For each section:
 After all sections written:
 
 ```
-All sections are complete. Here's your full article:
+All sections are complete! I've assembled the full article here:
 
-[Display assembled article]
+📄 cody-projects/article-writer/drafts/[draft-id].md
 
-Ready to generate SEO and export, or would you like to revise any sections?
+Please review it and let me know if you'd like to revise any sections, or if you're ready to generate SEO and export.
 ```
 
-- Revise → return to specific section
+- Revise → return to specific section, update the .md file after changes
 - Continue → proceed to SEO
 
 ### Phase 8: SEO Generation
@@ -208,7 +211,8 @@ Approve or adjust?
    - `{{author}}` → from style guide context
    - `{{content}}` → assembled article sections
 3. Save to `cody-projects/article-writer/articles/[slug].md`
-4. Move draft to `cody-projects/article-writer/archive/`
+4. Move draft JSON to `cody-projects/article-writer/archive/`
+5. Delete working draft .md from `cody-projects/article-writer/drafts/`
 
 **Final message:**
 ```
