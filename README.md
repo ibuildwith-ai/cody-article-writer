@@ -23,11 +23,12 @@ An AI Agent Skill that guides you through writing articles via a structured, ite
 
 ## Installation
 
+**Download:** [cody-article-writer.skill](cody-article-writer.skill)
+
 ### Claude AI Desktop App
 
-1. Download `cody-article-writer.skill`
-2. Double-click or "Open with Claude AI"
-3. Start writing: "I want to write an article about..."
+1. Double-click the downloaded `.skill` file or "Open with Claude AI"
+2. Start writing: "I want to write an article about..."
 
 ### Claude Code (VS Code)
 
