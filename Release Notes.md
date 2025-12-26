@@ -1,10 +1,29 @@
 # Release Notes
 
-## Version 1.5.1
+> ### Version 1.5.2
+>> Refocused the final steps on article metadata, leaving SEO optimization for a dedicated skill in the future.
+>>> December 26, 2025
 
-**Release Date:** December 25, 2025
+---
 
-**Theme:** Improved collaboration quality through constructive AI feedback.
+### Added
+- Filename selection step — you can now choose your exported article's filename (a kebab-case suggestion is provided based on your title, but you can override it)
+
+### Changed
+- "SEO Generation" phase renamed to "Article Metadata Generation" — focuses on title, description, and keywords for your article frontmatter
+- "Export" phase renamed to "Export Article" for clarity
+- Removed slug generation — SEO-specific features will be handled by a dedicated SEO skill in the future
+
+### Fixed
+- No fixes in this release.
+
+---
+
+> ### Version 1.5.1
+>> Improved collaboration quality through constructive AI feedback.
+>>> December 25, 2025
+
+---
 
 ### Added
 - AI now acts as a firm sounding board during all workflow phases, providing honest feedback and challenging weak ideas instead of simply agreeing with everything you propose.
@@ -17,11 +36,11 @@
 
 ---
 
-## Version 1.5
+> ### Version 1.5
+>> Enhanced editing workflow with optional AI-powered editorial pass and improved draft preview experience.
+>>> December 25, 2025
 
-**Release Date:** December 25, 2025
-
-**Theme:** Enhanced editing workflow with optional AI-powered editorial pass and improved draft preview experience.
+---
 
 ### Added
 - **Optional Editor Pass** - New phase after writing where AI polishes your article based on your style guide settings. Removes common AI writing tells, tightens prose, adds formatting (lists, bold, pull quotes), and fixes grammar. Your original is preserved as backup.
@@ -38,11 +57,11 @@
 
 ---
 
-## Version 1.0.1
+> ### Version 1.0.1
+>> Metadata and versioning improvements.
+>>> December 25, 2025
 
-**Release Date:** December 25, 2025
-
-**Theme:** Metadata and versioning improvements.
+---
 
 ### Added
 - Version tracking in skill metadata for better release management.
@@ -55,11 +74,11 @@
 
 ---
 
-## Version 1.0
+> ### Version 1.0
+>> Initial release of Cody Article Writer with complete workflow and style guide system.
+>>> December 23, 2025
 
-**Release Date:** December 23, 2025
-
-**Theme:** Initial release of Cody Article Writer with complete workflow and style guide system.
+---
 
 ### Added
 - **Complete Article Workflow** - 9-phase guided process from topic ideation through SEO-optimized export.

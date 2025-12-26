@@ -1,9 +1,9 @@
 # Cody Article Writer
 
-![Version](https://img.shields.io/badge/version-1.5.1-blue)
+![Version](https://img.shields.io/badge/version-1.5.2-blue)
 [![iBuildWith.ai](https://img.shields.io/badge/by-iBuildWith.ai-20c05b)](https://www.ibuildwith.ai)
 
-An AI Agent Skill that guides you through writing articles via a structured, iterative workflow with customizable style guides, from topic ideation to SEO-optimized export.
+An AI Agent Skill that guides you through writing articles via a structured, iterative workflow with customizable style guides, from topic ideation to markdown export.
 
 ## What is this?
 
@@ -18,8 +18,8 @@ An AI Agent Skill that guides you through writing articles via a structured, ite
 5. **Section Confirmation** — Review and adjust the section breakdown
 6. **Write Sections** — Collaborate on each section iteratively
 7. **Editor Pass** (optional) — AI-powered editing for formatting and polish
-8. **SEO Generation** — Create optimized metadata for publishing
-9. **Export** — Generate clean markdown with frontmatter
+8. **Article Metadata** — Generate title, description, and keywords for frontmatter
+9. **Export Article** — Choose your filename and generate clean markdown with frontmatter
 
 ## Installation
 
@@ -84,7 +84,7 @@ Your work is automatically saved throughout the entire process. Stop anytime and
 
 - **Resume at any phase** - Your current phase, topic, thesis, outline, and completed sections are preserved
 - **Preview as you write** - See a readable markdown file of your work-in-progress without scrolling through chat
-- **Complete article history** - Every finished article is archived with its original idea, thesis, sections, and SEO metadata for potential re-export
+- **Complete article history** - Every finished article is archived with its original idea, thesis, sections, and metadata for potential re-export
 - **No lost work** - All style guides are saved and reusable across articles
 
 ### Centralized Project Storage

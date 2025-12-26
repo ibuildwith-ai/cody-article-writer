@@ -2,11 +2,11 @@
 name: cody-article-writer
 metadata:
   author: ibuildwith.ai
-  version: "1.5.1"
+  version: "1.5.2"
 description: >
   Cody Article Writer: Article writing workflow with customizable style guides. Use when the user wants to 
   write articles, blog posts, or long-form content. Handles the full workflow: topic 
-  ideation, thesis development, outlining, section-by-section writing, SEO generation, 
+  ideation, thesis development, outlining, section-by-section writing, article metadata generation, 
   and markdown export. Also handles style guide management including commands like 
   "list writing styles", "create a new article style", "edit my writing style", 
   "delete style", "show my drafts", "continue my article", or "show my articles".
@@ -51,7 +51,7 @@ Notify user: "I've created `./cody-projects/article-writer/` to store your style
 
 ```
 Start → Topic Ideation → Style Selection → Title/Thesis → Outline → 
-Section Confirmation → Write Sections → Editorial Decision → [Editor Pass] → SEO → Export → Finished
+Section Confirmation → Write Sections → Editorial Decision → [Editor Pass] → Article Metadata → Export Article → Finished
 ```
 
 Each phase has an iteration loop (user + AI collaborate until satisfied).
@@ -64,10 +64,10 @@ Each phase has an iteration loop (user + AI collaborate until satisfied).
 4. **Outline** — Generate structure using style's opening/closing types. Iterate until approved.
 5. **Section Confirmation** — Present sections from outline, allow user to split/combine.
 6. **Write Article** — Write one section at a time, applying formatting settings. Iterate each.
-7. **Editorial Decision** — Offer optional editor pass or skip to SEO.
+7. **Editorial Decision** — Offer optional editor pass or skip to Article Metadata.
 8. **Editor Pass** (optional) — Polish formatting, tighten prose, apply style guide. Creates `-editorpass.md`.
-9. **SEO Generation** — Generate title, description, slug, keywords. Get approval.
-10. **Export** — Fill template, save to `articles/`, clean up drafts, archive JSON.
+9. **Article Metadata Generation** — Generate title, description, keywords. Get approval.
+10. **Export Article** — Fill template, save to `articles/`, clean up drafts, archive JSON.
 
 For detailed phase instructions, see `references/article-workflow.md`.
 
@@ -100,7 +100,7 @@ Drafts are JSON files tracking article progress:
   "id": "unique-identifier-date",
   "created_at": "ISO timestamp",
   "updated_at": "ISO timestamp",
-  "phase": "ideation|thesis|outline|writing|editor|seo|export",
+  "phase": "ideation|thesis|outline|writing|editor|metadata|export",
   "style_guide": "style-filename",
   "initial_idea": "raw user input before refinement",
   "topic": "refined topic",
@@ -112,12 +112,12 @@ Drafts are JSON files tracking article progress:
   "sections": {
     "section-slug": "written content"
   },
-  "seo": {
-    "title": "SEO title",
+  "metadata": {
+    "title": "article title",
     "description": "meta description",
-    "slug": "url-slug",
     "keywords": ["keyword1", "keyword2"]
-  }
+  },
+  "filename": "user-approved-filename"
 }
 ```
 
@@ -128,13 +128,14 @@ Use template from `assets/templates/article_default.md`.
 Fill placeholders:
 - `{{title}}` → article title
 - `{{date}}` → current date (YYYY-MM-DD)
-- `{{description}}` → SEO description
-- `{{slug}}` → SEO slug
+- `{{description}}` → meta description
 - `{{keywords}}` → comma-separated keywords
 - `{{author}}` → from style guide's author_role
 - `{{content}}` → assembled sections
 
-Save to: `cody-projects/article-writer/articles/[slug].md`
+Filename: Suggest kebab-case from title (e.g., "When Context Becomes Content" → `when-context-becomes-content.md`). User can override. Extension always `.md`.
+
+Save to: `cody-projects/article-writer/articles/[filename].md`
 Archive draft to: `cody-projects/article-writer/archive/[draft-id].json`
 
 ## Resources

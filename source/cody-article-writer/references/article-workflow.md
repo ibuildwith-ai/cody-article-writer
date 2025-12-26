@@ -182,12 +182,12 @@ All sections are complete! I've assembled the full article here:
 
 Would you like me to run an editorial pass? I'll review formatting, tighten the prose, and ensure it follows your style guide.
 
-Or we can skip ahead to SEO and export.
+Or we can skip ahead to article metadata and export.
 ```
 
 - Revise sections → return to specific section, update the .md file
 - Editorial pass → proceed to Phase 8
-- Skip to SEO → proceed to Phase 9 (uses `[id].md` as source)
+- Skip to Article Metadata → proceed to Phase 9 (uses `[id].md` as source)
 
 ### Phase 8: Editor Pass (Optional)
 
@@ -225,31 +225,37 @@ Approve the changes, or let me know what to adjust.
 
 **Draft state:** Update `phase: "editor"`
 
-### Phase 9: SEO Generation
+### Phase 9: Article Metadata Generation
 
-**Goal:** Generate metadata for publishing.
+**Goal:** Generate metadata for the article frontmatter.
 
 Generate:
-- **title:** SEO-optimized title (may differ from article title)
+- **title:** Article title (confirm or refine the working title)
 - **description:** Meta description (150-160 characters)
-- **slug:** URL-friendly version of title
 - **keywords:** Array of relevant keywords/tags
 
 Present for approval:
 
 ```
-SEO Metadata:
-- Title: "Your SEO Title Here"
+Article Metadata:
+- Title: "Your Article Title Here"
 - Description: "A compelling meta description..."
-- Slug: your-seo-title-here
 - Keywords: [keyword1, keyword2, keyword3]
 
 Approve or adjust?
 ```
 
-**Draft state:** Update `phase: "seo"`, save `seo` object
+After metadata is approved, suggest a filename:
 
-### Phase 10: Export
+```
+Suggested filename: your-article-title-here.md
+
+Use this, or provide your own filename (extension will always be .md):
+```
+
+**Draft state:** Update `phase: "metadata"`, save `metadata` object and `filename`
+
+### Phase 10: Export Article
 
 **Goal:** Generate final markdown file.
 
@@ -260,12 +266,11 @@ Approve or adjust?
 3. Fill placeholders:
    - `{{title}}` → article title
    - `{{date}}` → current date
-   - `{{description}}` → SEO description
-   - `{{slug}}` → SEO slug
-   - `{{keywords}}` → SEO keywords array
+   - `{{description}}` → meta description
+   - `{{keywords}}` → keywords array
    - `{{author}}` → from style guide context
    - `{{content}}` → content from source file
-4. Save to `cody-projects/article-writer/articles/[slug].md`
+4. Save to `cody-projects/article-writer/articles/[filename].md`
 5. Move `drafts/[draft-id].json` to `cody-projects/article-writer/archive/`
 6. Delete `drafts/[draft-id].md`
 7. Delete `drafts/[draft-id]-editorpass.md` (if exists)
@@ -273,7 +278,7 @@ Approve or adjust?
 **Final message:**
 ```
 Article exported successfully!
-- Article: cody-projects/article-writer/articles/[slug].md
+- Article: cody-projects/article-writer/articles/[filename].md
 - Draft archived: cody-projects/article-writer/archive/[draft-id].json
 ```
 
