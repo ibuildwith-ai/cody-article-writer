@@ -2,7 +2,7 @@
 name: cody-article-writer
 metadata:
   author: ibuildwith.ai
-  version: "1.01"
+  version: "1.5"
 description: >
   Cody Article Writer: Article writing workflow with customizable style guides. Use when the user wants to 
   write articles, blog posts, or long-form content. Handles the full workflow: topic 
@@ -51,7 +51,7 @@ Notify user: "I've created `./cody-projects/article-writer/` to store your style
 
 ```
 Start → Topic Ideation → Style Selection → Title/Thesis → Outline → 
-Section Confirmation → Write Sections → Completion Check → SEO → Export → Finished
+Section Confirmation → Write Sections → Editorial Decision → [Editor Pass] → SEO → Export → Finished
 ```
 
 Each phase has an iteration loop (user + AI collaborate until satisfied).
@@ -64,9 +64,10 @@ Each phase has an iteration loop (user + AI collaborate until satisfied).
 4. **Outline** — Generate structure using style's opening/closing types. Iterate until approved.
 5. **Section Confirmation** — Present sections from outline, allow user to split/combine.
 6. **Write Article** — Write one section at a time, applying formatting settings. Iterate each.
-7. **Completion Check** — Show assembled article. Allow revisions or proceed.
-8. **SEO Generation** — Generate title, description, slug, keywords. Get approval.
-9. **Export** — Fill template, save to `articles/`, move draft to `archive/`.
+7. **Editorial Decision** — Offer optional editor pass or skip to SEO.
+8. **Editor Pass** (optional) — Polish formatting, tighten prose, apply style guide. Creates `-editorpass.md`.
+9. **SEO Generation** — Generate title, description, slug, keywords. Get approval.
+10. **Export** — Fill template, save to `articles/`, clean up drafts, archive JSON.
 
 For detailed phase instructions, see `references/article-workflow.md`.
 
@@ -99,8 +100,9 @@ Drafts are JSON files tracking article progress:
   "id": "unique-identifier-date",
   "created_at": "ISO timestamp",
   "updated_at": "ISO timestamp",
-  "phase": "ideation|thesis|outline|writing|seo|export",
+  "phase": "ideation|thesis|outline|writing|editor|seo|export",
   "style_guide": "style-filename",
+  "initial_idea": "raw user input before refinement",
   "topic": "refined topic",
   "title": "approved title",
   "thesis": "thesis statement",
@@ -140,4 +142,5 @@ Archive draft to: `cody-projects/article-writer/archive/[draft-id].json`
 - `references/style-schema.md` — Complete style guide field definitions
 - `references/style-workflow.md` — Style creation/editing workflow
 - `references/article-workflow.md` — Detailed article writing phases
+- `references/editor-style-guide.md` — Editorial pass guidelines and checks
 - `assets/templates/article_default.md` — Default export template

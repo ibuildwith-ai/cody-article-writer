@@ -31,15 +31,16 @@ Message on creation: "I've created `./cody-projects/article-writer/` to store yo
 **Goal:** Refine the raw topic idea into something focused.
 
 1. User provides initial topic idea
-2. Iterate with AI:
+2. Capture raw input as `initial_idea` (preserve exactly as user typed it)
+3. Iterate with AI:
    - Explore angles
    - Narrow or expand scope
    - Identify unique perspective
-3. Check: "Ready to form a thesis?"
+4. Check: "Ready to form a thesis?"
    - No → continue refining
    - Yes → proceed to style selection
 
-**Draft state:** Save with `phase: "ideation"`, capture `topic`
+**Draft state:** Save with `phase: "ideation"`, capture `initial_idea` (raw input) and `topic` (refined version)
 
 ### Phase 2: Style Guide Selection
 
@@ -158,7 +159,7 @@ For each section:
 
 **Draft state:** Update `phase: "writing"`, save completed sections to `sections` object
 
-### Phase 7: Completion Check
+### Phase 7: Editorial Decision
 
 After all sections written:
 
@@ -167,13 +168,52 @@ All sections are complete! I've assembled the full article here:
 
 📄 cody-projects/article-writer/drafts/[draft-id].md
 
-Please review it and let me know if you'd like to revise any sections, or if you're ready to generate SEO and export.
+Would you like me to run an editorial pass? I'll review formatting, tighten the prose, and ensure it follows your style guide.
+
+Or we can skip ahead to SEO and export.
 ```
 
-- Revise → return to specific section, update the .md file after changes
-- Continue → proceed to SEO
+- Revise sections → return to specific section, update the .md file
+- Editorial pass → proceed to Phase 8
+- Skip to SEO → proceed to Phase 9 (uses `[id].md` as source)
 
-### Phase 8: SEO Generation
+### Phase 8: Editor Pass (Optional)
+
+**Goal:** Polish the article with formatting, tightening, and style guide adherence.
+
+See `references/editor-style-guide.md` for complete editorial guidelines.
+
+1. Read the original `drafts/[draft-id].md`
+2. Apply editorial checks (formatting, pull quotes, AI tell removal, tightening, etc.)
+3. Calibrate changes based on style guide settings (density, em_dashes, emojis)
+4. Create new file: `drafts/[draft-id]-editorpass.md`
+5. Preserve original `[draft-id].md` as backup
+6. Output summary of changes to chat
+
+```
+Editorial pass complete! Here's what I updated:
+
+**Formatting:**
+- Added 2 bulleted lists
+- Bolded 5 key terms
+- Added 1 pull quote
+
+**Tightening:**
+- Removed 3 instances of "Additionally"
+- Replaced 2 em dashes with commas
+
+📄 Review the edited version: cody-projects/article-writer/drafts/[draft-id]-editorpass.md
+📄 Original preserved at: cody-projects/article-writer/drafts/[draft-id].md
+
+Approve the changes, or let me know what to adjust.
+```
+
+- Approve → proceed to Phase 9 (uses `[id]-editorpass.md` as source)
+- Iterate → make requested changes to `-editorpass.md`, show updated summary
+
+**Draft state:** Update `phase: "editor"`
+
+### Phase 9: SEO Generation
 
 **Goal:** Generate metadata for publishing.
 
@@ -197,22 +237,26 @@ Approve or adjust?
 
 **Draft state:** Update `phase: "seo"`, save `seo` object
 
-### Phase 9: Export
+### Phase 10: Export
 
 **Goal:** Generate final markdown file.
 
-1. Load template from skill's `assets/templates/article_default.md`
-2. Fill placeholders:
+1. Determine source file:
+   - If editor pass was done → use `drafts/[draft-id]-editorpass.md`
+   - If editor pass was skipped → use `drafts/[draft-id].md`
+2. Load template from skill's `assets/templates/article_default.md`
+3. Fill placeholders:
    - `{{title}}` → article title
    - `{{date}}` → current date
    - `{{description}}` → SEO description
    - `{{slug}}` → SEO slug
    - `{{keywords}}` → SEO keywords array
    - `{{author}}` → from style guide context
-   - `{{content}}` → assembled article sections
-3. Save to `cody-projects/article-writer/articles/[slug].md`
-4. Move draft JSON to `cody-projects/article-writer/archive/`
-5. Delete working draft .md from `cody-projects/article-writer/drafts/`
+   - `{{content}}` → content from source file
+4. Save to `cody-projects/article-writer/articles/[slug].md`
+5. Move `drafts/[draft-id].json` to `cody-projects/article-writer/archive/`
+6. Delete `drafts/[draft-id].md`
+7. Delete `drafts/[draft-id]-editorpass.md` (if exists)
 
 **Final message:**
 ```
