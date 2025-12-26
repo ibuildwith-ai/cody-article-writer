@@ -1,6 +1,7 @@
 # Cody Article Writer
 
 ![Version](https://img.shields.io/badge/version-1.5.2-blue)
+[![License](https://img.shields.io/badge/license-Custom-orange)](LICENSE.md)
 [![iBuildWith.ai](https://img.shields.io/badge/by-iBuildWith.ai-20c05b)](https://www.ibuildwith.ai)
 
 An AI Agent Skill that guides you through writing articles via a structured, iterative workflow with customizable style guides, from topic ideation to markdown export.
@@ -150,6 +151,16 @@ Cody Article Writer acts as a **firm sounding board**, not a sycophant:
 Part of the Cody family of AI Agent Skills:
 - Cody Product Builder — Build products with AI
 - Cody Article Writer — Write articles with AI
+
+## License
+
+Cody Article Writer is licensed under a custom license that permits free use for article writing and content creation (including commercial use), but prohibits redistribution, modification, and sale of the software itself.
+
+See [LICENSE.md](LICENSE.md) for complete terms.
+
+## Release Notes
+
+See [Release Notes.md](Release%20Notes.md) for version history and updates.
 
 ## Links
 
