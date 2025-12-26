@@ -1,16 +1,16 @@
 # Cody Article Writer
 
+© Copyright 2025 – Red Pill Blue Pill Studios, LLC – All Rights Reserved.
+
+![Cody Article Writer Logo](images/cody-article-writer-logo.png)
+
 ![Version](https://img.shields.io/badge/version-1.5.2-blue)
 [![License](https://img.shields.io/badge/license-Custom-orange)](LICENSE.md)
 [![iBuildWith.ai](https://img.shields.io/badge/by-iBuildWith.ai-20c05b)](https://www.ibuildwith.ai)
 
-An AI Agent Skill that guides you through writing articles via a structured, iterative workflow with customizable style guides, from topic ideation to markdown export.
+**Cody Article Writer** is an AI Agent Skill (following the [agentskills.io](https://agentskills.io/specification) specification) that transforms how you write articles. Instead of staring at a blank page, you collaborate with AI through a structured, iterative workflow with customizable style guides. Each phase includes iteration loops where nothing moves forward until you're satisfied - from topic ideation all the way to markdown export.
 
-## What is this?
-
-**Cody Article Writer** is an AI Agent Skill (following the [agentskills.io](https://agentskills.io/specification) specification) that transforms how you write articles. Instead of staring at a blank page, you collaborate with AI through a structured workflow where each phase includes iteration loops. Nothing moves forward until you're satisfied.
-
-### The Workflow
+## The Workflow
 
 1. **Topic Ideation** — Refine rough concepts with AI brainstorming until focused
 2. **Style Selection** — Choose or create reusable style guides that capture your voice
