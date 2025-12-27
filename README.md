@@ -10,7 +10,71 @@
 
 **Cody Article Writer** is an AI Agent Skill (following the [agentskills.io](https://agentskills.io/specification) specification) that transforms how you write articles. Instead of staring at a blank page, you collaborate with AI through a structured, iterative workflow with customizable style guides. Each phase includes iteration loops where nothing moves forward until you're satisfied - from topic ideation all the way to markdown export.
 
-## The Workflow
+## Download
+
+Download the [cody-article-writer.skill](cody-article-writer.skill) file.
+
+## Installation
+
+### Claude AI Desktop App
+
+1. Double-click the downloaded `.skill` file or "Open with Claude AI"
+2. Start writing: "I want to write an article about..."
+
+Learn more [here](https://support.claude.com/en/articles/12512180-using-skills-in-claude).
+
+### Claude AI Web
+
+1. Click on your username
+2. Click on settings
+3. Click on capabilities
+4. Scroll down to "Skills"
+5. Click on "+ Add"
+6. Click on "Upload a skill"
+7. Drag and drop the skill into the box.
+
+Learn more [here](https://support.claude.com/en/articles/12512180-using-skills-in-claude).
+
+### Claude Code
+
+```bash
+# Project Level
+unzip cody-article-writer.skill -d .github/skills/
+
+# User Home
+unzip cody-article-writer.skill -d ~/.claude/skills/
+```
+
+Extract to your skills folder. Learn more [here](https://code.claude.com/docs/en/skills).
+
+### GitHub Copilot (VS Code, CLI, Copilot Agent)
+
+```bash
+# Github Folder
+unzip cody-article-writer.skill -d .github/skills/
+
+# Claude Folder (Legacy Support)
+unzip cody-article-writer.skill -d .claude/skills/
+```
+
+Extract to your skills folder. Learn more [here] (https://code.visualstudio.com/docs/copilot/customization/agent-skills).
+
+### Open AI Codex
+
+```bash
+# Project
+unzip cody-article-writer.skill -d .codex/skills/
+
+# User Home
+unzip cody-article-writer.skill -d ~/.codex/skills/
+
+# Admin
+unzip cody-article-writer.skill -d /etc/codex/skills
+```
+
+Extract to your skills folder. Learn more [here](https://developers.openai.com/codex/skills/).
+
+## Writing Workflow
 
 1. **Topic Ideation** — Refine rough concepts with AI brainstorming until focused
 2. **Style Selection** — Choose or create reusable style guides that capture your voice
@@ -21,26 +85,21 @@
 7. **Add Metadata** — Generate title, description, and keywords for frontmatter
 8. **Export Article** — Choose your filename and generate clean markdown with frontmatter
 
-## Installation
+## Example Commands
 
-**Download:** [cody-article-writer.skill](cody-article-writer.skill)
-
-### Claude AI Desktop App
-
-1. Double-click the downloaded `.skill` file or "Open with Claude AI"
-2. Start writing: "I want to write an article about..."
-
-### Claude Code (VS Code)
-
-Extract to your project or global skills directory:
-
-```bash
-# Project-level
-unzip cody-article-writer.skill -d .claude/skills/
-
-# Or global
-unzip cody-article-writer.skill -d ~/.claude/skills/
-```
+| Command | Action |
+|---------|--------|
+| "write an article about X" | Start article workflow |
+| "continue my article" | Resume most recent draft |
+| "continue the X article" | Resume specific draft |
+| "show my drafts" | List in-progress articles |
+| "show my articles" | List exported articles |
+| "list my writing styles" | List available style guides |
+| "create a new article style" | Start style guide workflow |
+| "edit my X style" | Modify existing style |
+| "delete the X style" | Remove style guide |
+| "show my archive" | List completed draft states |
+| "re-export the X article" | Re-export from archive |
 
 ## Features
 
@@ -97,23 +156,24 @@ All Cody Skills store their outputs in a single `cody-projects/` directory in yo
 
 This centralized approach makes it easy to find all your Cody-generated work, back up your projects, and manage outputs across different skills.
 
-## Example Commands
+## Collaboration Philosophy
 
-| Command | Action |
-|---------|--------|
-| "write an article about X" | Start article workflow |
-| "continue my article" | Resume most recent draft |
-| "continue the X article" | Resume specific draft |
-| "show my drafts" | List in-progress articles |
-| "show my articles" | List exported articles |
-| "list my writing styles" | List available style guides |
-| "create a new article style" | Start style guide workflow |
-| "edit my X style" | Modify existing style |
-| "delete the X style" | Remove style guide |
-| "show my archive" | List completed draft states |
-| "re-export the X article" | Re-export from archive |
+Cody Article Writer acts as a **firm sounding board**, not a sycophant:
+
+- Provides honest feedback on weak ideas
+- Challenges assumptions and points out gaps
+- Offers constructive critique instead of empty praise
+- Maintains objective assessment even when you disagree
+- Helps you produce your best work, not just feel good
+
+## Requirements
+
+- An AI coding assistant that supports Agent Skills (e.g., Claude AI, Claude Code, GitHub Copilot, OpenAI Codex)
+- File system access for saving styles and drafts
 
 ## Skill Structure
+
+The internal organization of the skill files that define the article writing workflow.
 
 ```
 cody-article-writer/
@@ -128,20 +188,18 @@ cody-article-writer/
         └── article_default.md         # Export template
 ```
 
-## Requirements
+## Project Structure
 
-- Claude AI Desktop App or Claude Code
-- File system access for saving styles and drafts
+This structure is automatically created in your working directory when you start writing to store all your articles, drafts, and settings.
 
-## Collaboration Philosophy
-
-Cody Article Writer acts as a **firm sounding board**, not a sycophant:
-
-- Provides honest feedback on weak ideas
-- Challenges assumptions and points out gaps
-- Offers constructive critique instead of empty praise
-- Maintains objective assessment even when you disagree
-- Helps you produce your best work, not just feel good
+```
+cody-projects/
+└── article-writer/
+    ├── articles/                      # Exported markdown articles
+    ├── styles/                        # Custom style guides
+    ├── drafts/                        # Work-in-progress articles
+    └── archives/                      # Completed article history
+```
 
 ## Author
 
