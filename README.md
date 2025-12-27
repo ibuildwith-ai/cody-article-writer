@@ -16,11 +16,10 @@
 2. **Style Selection** — Choose or create reusable style guides that capture your voice
 3. **Title & Thesis** — Craft compelling titles and clear thesis statements
 4. **Outline** — Structure your article with opening/closing strategies
-5. **Section Confirmation** — Review and adjust the section breakdown
-6. **Write Sections** — Collaborate on each section iteratively
-7. **Editor Pass** (optional) — AI-powered editing for formatting and polish
-8. **Article Metadata** — Generate title, description, and keywords for frontmatter
-9. **Export Article** — Choose your filename and generate clean markdown with frontmatter
+5. **Write Article** — Review sections, then iterate on each until complete
+6. **Editor Pass** (optional) — AI-powered editing for formatting and polish
+7. **Add Metadata** — Generate title, description, and keywords for frontmatter
+8. **Export Article** — Choose your filename and generate clean markdown with frontmatter
 
 ## Installation
 
