@@ -1,7 +1,5 @@
 # Cody Article Writer
 
-© Copyright 2025 – Red Pill Blue Pill Studios, LLC – All Rights Reserved.
-
 ![Cody Article Writer Logo](images/cody-article-writer-logo.png)
 
 ![Version](https://img.shields.io/badge/version-1.5.2-blue)
@@ -206,6 +204,8 @@ cody-projects/
 ## Author
 
 **iBuildWith.ai**
+
+© Copyright 2025 – Red Pill Blue Pill Studios, LLC – All Rights Reserved.
 
 Part of the Cody family of AI Agent Skills:
 - Cody Product Builder — Build products with AI
