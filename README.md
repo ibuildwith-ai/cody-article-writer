@@ -131,7 +131,8 @@ Every phase includes iteration loops. AI acts as a firm sounding board, providin
 - Topic ideation with AI brainstorming
 - Title and thesis refinement
 - Outline structuring
-- Section-by-section writing
+- Article writing (section-by-section or full draft first)
+- Article approval and review
 - Optional editorial polish
 
 ### Editor Pass
