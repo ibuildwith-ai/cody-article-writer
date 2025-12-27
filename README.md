@@ -10,6 +10,8 @@
 
 **Cody Article Writer** is an AI Agent Skill (following the [agentskills.io](https://agentskills.io/specification) specification) that transforms how you write articles. Instead of staring at a blank page, you collaborate with AI through a structured, iterative workflow with customizable style guides. Each phase includes iteration loops where nothing moves forward until you're satisfied - from topic ideation all the way to markdown export.
 
+⭐⭐ **If you find this skill helpful, please star this repo to show your support!** ⭐⭐
+
 ## Download
 
 Download the [cody-article-writer.skill](cody-article-writer.skill) file.
