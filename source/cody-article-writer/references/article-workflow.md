@@ -143,7 +143,7 @@ I see [N] sections in your outline:
 4. [Section heading]
 5. Conclusion (Closing)
 
-Want me to write these one at a time, or would you like to split/combine any sections?
+Would you like to split or combine any sections before we start writing?
 ```
 
 Update outline based on any changes.
@@ -152,12 +152,25 @@ Update outline based on any changes.
 
 ### Phase 6: Write Article
 
-**Goal:** Write each section iteratively.
+**Goal:** Write the article content.
 
 Extract **formatting** settings from style guide:
 - Formatting density
 - Emoji usage
 - EM dash frequency
+
+#### Writing Mode Decision
+
+Ask user how they want to write:
+
+```
+How would you like to write this article?
+
+1. **Section by section** — We'll write and refine each section together before moving to the next
+2. **Full draft first** — I'll write the entire article, then you can review and we'll iterate on the whole thing
+```
+
+#### Mode A: Section by Section
 
 For each section:
 1. Write section draft (AI)
@@ -167,29 +180,50 @@ For each section:
 5. Update working draft file: `drafts/[draft-id].md`
 6. Move to next section
 
-**Working draft file:** Create `drafts/[draft-id].md` when first section is written. Update it after each section is completed. This gives the user a readable file to review instead of dumping content in chat.
+When all sections complete → AI declares "Article Completed" → proceed to Article Approval
 
-**Draft state:** Update `phase: "writing"`, save completed sections to `sections` object
+#### Mode B: Full Draft First
 
-### Phase 7: Editorial Decision
+1. Write entire article at once (AI)
+2. Populate all `sections` in the JSON (same structure as Mode A, just all at once)
+3. Save to `drafts/[draft-id].md`
+4. AI declares "Article Completed" → proceed to Article Approval
 
-After all sections written:
+**Working draft file:** Create `drafts/[draft-id].md` during writing. This gives the user a readable file to review instead of dumping content in chat.
+
+**Draft state:** Update `phase: "writing"`, save `writing_mode` ("section" or "full"), save completed sections to `sections` object
+
+### Phase 7: Article Approval
+
+**Goal:** Get user approval on the completed article.
 
 ```
-All sections are complete! I've assembled the full article here:
+The article is complete! I've saved it here:
 
 📄 cody-projects/article-writer/drafts/[draft-id].md
 
+Please review it. Are you satisfied with the article, or would you like to make changes?
+```
+
+- **Approved** → proceed to Editorial Decision (Phase 8)
+- **Needs changes** → user specifies what to change (e.g., "In section 2, make X more concise"), AI updates the specific section in `sections` object, regenerates `[id].md`, loop until approved
+
+**Draft state:** Update `phase: "approval"`
+
+### Phase 8: Editorial Decision
+
+After article is approved:
+
+```
 Would you like me to run an editorial pass? I'll review formatting, tighten the prose, and ensure it follows your style guide.
 
 Or we can skip ahead to article metadata and export.
 ```
 
-- Revise sections → return to specific section, update the .md file
-- Editorial pass → proceed to Phase 8
-- Skip to Article Metadata → proceed to Phase 9 (uses `[id].md` as source)
+- Editorial pass → proceed to Phase 9
+- Skip to Article Metadata → proceed to Phase 10 (uses `[id].md` as source)
 
-### Phase 8: Editor Pass (Optional)
+### Phase 9: Editor Pass (Optional)
 
 **Goal:** Polish the article with formatting, tightening, and style guide adherence.
 
@@ -220,12 +254,12 @@ Editorial pass complete! Here's what I updated:
 Approve the changes, or let me know what to adjust.
 ```
 
-- Approve → proceed to Phase 9 (uses `[id]-editorpass.md` as source)
+- Approve → proceed to Phase 10 (uses `[id]-editorpass.md` as source)
 - Iterate → make requested changes to `-editorpass.md`, show updated summary
 
 **Draft state:** Update `phase: "editor"`
 
-### Phase 9: Article Metadata Generation
+### Phase 10: Article Metadata Generation
 
 **Goal:** Generate metadata for the article frontmatter.
 
@@ -255,7 +289,7 @@ Use this, or provide your own filename (extension will always be .md):
 
 **Draft state:** Update `phase: "metadata"`, save `metadata` object and `filename`
 
-### Phase 10: Export Article
+### Phase 11: Export Article
 
 **Goal:** Generate final markdown file.
 

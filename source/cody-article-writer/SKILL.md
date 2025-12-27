@@ -2,7 +2,7 @@
 name: cody-article-writer
 metadata:
   author: ibuildwith.ai
-  version: "1.5.2"
+  version: "1.6"
 description: >
   Cody Article Writer: Article writing workflow with customizable style guides. Use when the user wants to 
   write articles, blog posts, or long-form content. Handles the full workflow: topic 
@@ -51,7 +51,7 @@ Notify user: "I've created `./cody-projects/article-writer/` to store your style
 
 ```
 Start → Topic Ideation → Style Selection → Title/Thesis → Outline → 
-Section Confirmation → Write Sections → Editorial Decision → [Editor Pass] → Article Metadata → Export Article → Finished
+Section Confirmation → Write Article → Article Approval → [Editor Pass] → Article Metadata → Export Article → Finished
 ```
 
 Each phase has an iteration loop (user + AI collaborate until satisfied).
@@ -63,11 +63,12 @@ Each phase has an iteration loop (user + AI collaborate until satisfied).
 3. **Title & Thesis** — Craft title and thesis using voice/context. Iterate until approved.
 4. **Outline** — Generate structure using style's opening/closing types. Iterate until approved.
 5. **Section Confirmation** — Present sections from outline, allow user to split/combine.
-6. **Write Article** — Write one section at a time, applying formatting settings. Iterate each.
-7. **Editorial Decision** — Offer optional editor pass or skip to Article Metadata.
-8. **Editor Pass** (optional) — Polish formatting, tighten prose, apply style guide. Creates `-editorpass.md`.
-9. **Article Metadata Generation** — Generate title, description, keywords. Get approval.
-10. **Export Article** — Fill template, save to `articles/`, clean up drafts, archive JSON.
+6. **Write Article** — Choose writing mode (section-by-section or full draft), then write and iterate.
+7. **Article Approval** — User reviews completed article and approves or requests changes.
+8. **Editorial Decision** — Offer optional editor pass or skip to Article Metadata.
+9. **Editor Pass** (optional) — Polish formatting, tighten prose, apply style guide. Creates `-editorpass.md`.
+10. **Article Metadata Generation** — Generate title, description, keywords. Get approval.
+11. **Export Article** — Fill template, save to `articles/`, clean up drafts, archive JSON.
 
 For detailed phase instructions, see `references/article-workflow.md`.
 
@@ -100,7 +101,7 @@ Drafts are JSON files tracking article progress:
   "id": "unique-identifier-date",
   "created_at": "ISO timestamp",
   "updated_at": "ISO timestamp",
-  "phase": "ideation|thesis|outline|writing|editor|metadata|export",
+  "phase": "ideation|thesis|outline|writing|approval|editor|metadata|export",
   "style_guide": "style-filename",
   "initial_idea": "raw user input before refinement",
   "topic": "refined topic",
@@ -109,6 +110,7 @@ Drafts are JSON files tracking article progress:
   "outline": [
     { "heading": "Section Name", "type": "opening|closing|null", "status": "pending|in_progress|complete" }
   ],
+  "writing_mode": "section|full",
   "sections": {
     "section-slug": "written content"
   },

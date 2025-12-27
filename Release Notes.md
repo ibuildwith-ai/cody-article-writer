@@ -1,5 +1,23 @@
 # Release Notes
 
+> ### Version 1.6
+>> Choose your writing style: collaborate section-by-section or let AI draft the full article first, then iterate until you're satisfied.
+>>> December 27, 2025
+
+---
+
+### Added
+- Writing mode choice to decide whether to write section-by-section or have AI write the full draft first
+- Article Approval phase — explicit checkpoint where you approve the completed article before moving to editor review
+
+### Changed
+- Workflow expanded to accommodate the new approval step
+
+### Fixed
+- No fixes in this release.
+
+---
+
 > ### Version 1.5.2
 >> Refocused the final steps on article metadata, leaving SEO optimization for a dedicated skill in the future.
 >>> December 26, 2025

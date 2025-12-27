@@ -2,7 +2,7 @@
 
 ![Cody Article Writer Logo](images/cody-article-writer-logo.png)
 
-![Version](https://img.shields.io/badge/version-1.5.2-blue)
+[![Version](https://img.shields.io/badge/version-1.6-blue)](Release%20Notes.md)
 [![License](https://img.shields.io/badge/license-Custom-orange)](LICENSE.md)
 [![iBuildWith.ai](https://img.shields.io/badge/by-iBuildWith.ai-20c05b)](https://www.ibuildwith.ai)
 
@@ -74,16 +74,19 @@ unzip cody-article-writer.skill -d /etc/codex/skills
 
 Extract to your skills folder. Learn more [here](https://developers.openai.com/codex/skills/).
 
-## Writing Workflow
+## Article Workflow
 
 1. **Topic Ideation** — Refine rough concepts with AI brainstorming until focused
 2. **Style Selection** — Choose or create reusable style guides that capture your voice
 3. **Title & Thesis** — Craft compelling titles and clear thesis statements
 4. **Outline** — Structure your article with opening/closing strategies
-5. **Write Article** — Review sections, then iterate on each until complete
-6. **Editor Pass** (optional) — AI-powered editing for formatting and polish
-7. **Add Metadata** — Generate title, description, and keywords for frontmatter
-8. **Export Article** — Choose your filename and generate clean markdown with frontmatter
+5. **Write Article** — Choose your writing mode: collaborate section-by-section or let AI draft the full article first
+6. **Article Approval** — Review and approve the completed article before moving forward
+7. **Editor Pass** (optional) — AI-powered editing for formatting and polish
+8. **Add Metadata** — Generate title, description, and keywords for frontmatter
+9. **Export Article** — Choose your filename and generate clean markdown with frontmatter
+
+![Article Writing Workflow](images/article-workflow.png)
 
 ## Example Commands
 
@@ -117,6 +120,10 @@ Style guides are applied progressively throughout the workflow:
 - **Structure** during outline creation
 - **Formatting** during section writing
 
+![Style Guide Example](images/user-style-guide.png)
+
+![Style Guide Creation Workflow](images/user-style-guide-workflow.png)
+
 ### Iterative Workflow
 
 Every phase includes iteration loops. AI acts as a firm sounding board, providing honest feedback and challenging weak ideas. Nothing moves forward until you're satisfied:
@@ -136,6 +143,8 @@ An optional AI editing phase calibrated to your style guide that:
 - Tightens prose and fixes grammar
 - Ensures tone consistency
 - Preserves your original as backup
+
+![Editor Style Guide](images/editor-style-guide.png)
 
 ### State Persistence
 
