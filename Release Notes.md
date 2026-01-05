@@ -1,5 +1,34 @@
 # Release Notes
 
+> ### Version 1.7
+>> Enhanced style guide system with improved structure settings and editorial content enhancement pass.
+>>> January 5, 2026
+
+---
+
+### Added
+- **Structure settings expanded:**
+  - `visual_breaks` (minimal/moderate/generous) — Controls white space and paragraph spacing (replaces confusing "density" field)
+  - `examples` (none/some/many) — Default preference for including examples
+  - `example_types` (lists, tables, diagrams, code_snippets, quotes, case_studies) — Preferred example types with implementation details (Mermaid diagrams, 2-4 paragraph case studies)
+- **Formatting setting:**
+  - `blockquotes` (never/rare/occasional/frequent) — Preference for using blockquotes/pull quotes
+- **Editorial content enhancement pass** — AI now suggests contextual examples (lists, tables, code snippets, diagrams, quotes, case studies) and blockquotes during editorial review based on style guide preferences
+- **Bold/italic guidelines** — Clear instructions for when and how to use text emphasis
+- **Collaboration Principles** — Explicit anti-sycophancy guidelines now loaded immediately when skill triggers, ensuring AI challenges weak ideas and provides honest feedback from the start
+- **AI-recommended style guide settings** — Option to get AI-suggested style configurations based on writing purpose and audience before manual configuration
+- **Recommended editor pass** — Editorial decision phase now emphasizes benefits and recommends running the editor pass with clear explanation of improvements
+
+### Changed
+- **Removed** `formatting.density` — Replaced with `structure.visual_breaks` for clearer intent (white space vs. formatting richness)
+- **Editorial workflow enhanced** — Editor pass now includes content enhancement suggestions (examples, blockquotes) tailored to each article
+- **Style guide structure** — Moved visual/structural decisions to Structure category where they belong
+
+### Fixed
+- Eliminated confusion around "density" property which users interpreted as article density rather than formatting richness
+
+---
+
 > ### Version 1.6
 >> Choose your writing style: collaborate section-by-section or let AI draft the full article first, then iterate until you're satisfied.
 >>> December 27, 2025

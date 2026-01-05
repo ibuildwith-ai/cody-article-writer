@@ -11,6 +11,29 @@ This workflow guides users through creating or editing a style guide.
 
 ## Workflow Phases
 
+### Phase 0: Recommendation Offer (Optional)
+
+Before starting configuration, offer AI-recommended settings:
+
+```
+I can suggest recommended style settings based on your goals, or we can configure everything from scratch.
+
+Would you like me to recommend settings based on:
+- Your writing purpose (e.g., "technical tutorials for developers")
+- Your target audience (e.g., "enterprise decision-makers")
+- Example articles you admire
+
+Or would you prefer to configure all settings manually?
+```
+
+If user wants recommendations:
+1. Gather purpose/audience/examples
+2. Suggest complete style guide settings
+3. Present for review and adjustment
+4. Skip to Phase 2 (Review Settings)
+
+If user wants manual configuration, proceed to Phase 1.
+
 ### Phase 1: Configuration
 
 Guide the user through each category. These can be set in any order, but present them sequentially for clarity.
@@ -36,15 +59,18 @@ Let's configure the voice for your style.
 ```
 Now let's set formatting preferences.
 
-1. Density (0-10): How much visual structure?
-   0 = Minimal (prose-focused) | 10 = Heavy (headers, lists, bold)
-
-2. Emojis (0-10): Emoji usage?
+1. Emojis (0-10): Emoji usage?
    0 = None | 10 = Frequent
 
-3. EM Dashes (0-10): Em dash frequency?
+2. EM Dashes (0-10): Em dash frequency?
    0 = Avoid entirely | 10 = Use freely
    (Note: Overuse is a common AI tell)
+
+3. Blockquotes: How often to use blockquotes/pull quotes?
+   - Never: Don't use blockquotes
+   - Rare: Very occasional use
+   - Occasional: Use where they add value
+   - Frequent: Actively look for opportunities
 ```
 
 **Structure Settings:**
@@ -64,6 +90,24 @@ Closing style (select one or more):
 - Callback: Reference the opening
 - Provocation: Challenge assumptions
 - Key Takeaways: Bullet list of main insights
+
+Visual Breaks: How much white space and paragraph spacing?
+- Minimal: Dense prose, longer paragraphs
+- Moderate: Balanced spacing, standard length
+- Generous: Short paragraphs, more breathing room
+
+Examples: Default preference for including examples?
+- None: Minimal examples, rely on explanation
+- Some: Occasional examples where helpful
+- Many: Liberal use of examples
+
+Example Types (if using examples, select preferred types):
+- Lists: Bulleted or numbered lists
+- Tables: Comparison tables, data tables
+- Diagrams: Flowcharts, visual models
+- Code Snippets: Code examples (technical content)
+- Quotes: Pull quotes, expert citations
+- Case Studies: Real-world scenarios
 ```
 
 **Context Settings:**
@@ -100,13 +144,16 @@ Here's your style guide configuration:
 - Technical: 5/10 (balanced)
 
 **Formatting:**
-- Density: 4/10 (moderate structure)
 - Emojis: 0/10 (none)
 - EM Dashes: 2/10 (minimal)
+- Blockquotes: Occasional
 
 **Structure:**
 - Opening: Narrative + Tension
 - Closing: Callback + Call to Action
+- Visual Breaks: Moderate
+- Examples: Some
+- Example Types: Lists, Code Snippets, Quotes
 
 **Context:**
 - Author Role: AI Educator and Startup Founder

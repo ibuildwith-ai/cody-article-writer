@@ -13,36 +13,121 @@ Always create `-editorpass.md` as a new file. Never overwrite the original.
 
 ## Editorial Checks
 
-### 1. Formatting (calibrated by `formatting.density`)
+### 1. Content Enhancement Pass
 
-| Density | Formatting Level |
-|---------|------------------|
-| 0-2 | Minimal — avoid lists, minimal bold, no pull quotes |
-| 3-5 | Moderate — occasional lists, bold key terms, 1 pull quote |
-| 6-8 | Substantial — use lists where helpful, bold important points, 1-2 pull quotes |
-| 9-10 | Heavy — liberal use of lists, headers, bold, italics, 2+ pull quotes |
+During editorial review, assess each section for opportunities to add examples, illustrations, and emphasis elements based on the style guide preferences and article needs.
 
-**Actions:**
-- Add bulleted/numbered lists where items are enumerated
-- Add subheadings (H3) to break up long sections
-- Bold key terms and important phrases
-- Italicize for emphasis (sparingly)
-- Remove excessive formatting if density is low
+#### Examples & Illustrations
 
-### 2. Pull Quotes
+Consult `structure.examples` and `structure.example_types` from the style guide:
 
-If `formatting.density` > 3, identify 1-2 standout sentences to highlight:
+**If `examples: "none"`** — Use minimal examples, rely on explanation
+**If `examples: "some"`** — Add examples where they genuinely clarify concepts
+**If `examples: "many"`** — Actively look for opportunities to add examples
 
-```markdown
-> "This is a compelling quote that captures a key insight."
-```
+**Example types to consider (based on `example_types`):**
+
+- **Lists** — Break down enumerated items, steps, or comparisons
+  - Ask: "Would a bulleted/numbered list make this clearer?"
+  - Present suggestion: "Section 3 lists three approaches—should I format this as a bulleted list?"
+
+- **Tables** — Compare features, options, or data points
+  - Ask: "Would a comparison table help readers see differences?"
+  - Present suggestion: "This section compares X vs Y—should I create a comparison table?"
+
+- **Diagrams** — Visualize processes, flows, or relationships
+  - Generate as Mermaid markdown syntax (flowcharts, sequence diagrams, state diagrams, etc.)
+  - Fallback to ASCII art or text representation if Mermaid isn't suitable
+  - Ask: "Would a flowchart or sequence diagram clarify this process?"
+  - Present suggestion with preview: "This authentication flow could be clearer as a sequence diagram—should I add one?"
+  - Example types: flowcharts (process flows), sequence diagrams (API interactions), state diagrams (system states)
+
+- **Code Snippets** — Illustrate technical concepts (for technical articles)
+  - Keep examples concise and focused on the concept being explained
+  - Include comments where helpful for clarity
+  - Ask: "Would a code example make this concrete?"
+  - Present suggestion: "This API explanation needs an example—should I add a code snippet showing how to call it?"
+
+- **Quotes** — Emphasize key insights with pull quotes
+  - Format as markdown blockquotes (using `>`)
+  - Pull quotes should be actual sentences from the article, not external citations
+  - Ask: "Is there a standout insight worth highlighting?"
+  - Present suggestion: "This sentence captures the key point—should I format it as a pull quote?"
+
+- **Case Studies** — Provide real-world scenarios
+  - Brief embedded examples (2-4 paragraphs), not full separate sections
+  - Can be real-world ("When Stripe redesigned...") or realistic hypothetical scenarios
+  - Format as blockquote callouts or subsections with "Example:" or "Case Study:" header
+  - Ask: "Would a brief real-world example help ground this concept?"
+  - Present suggestion: "Should I add a case study showing how [Company] handled this challenge?"
+
+**Important:** Always respect the user's style guide preferences, but make contextual suggestions. Even if `examples: "many"`, don't force examples where they don't add value.
+
+#### Blockquotes & Pull Quotes
+
+Consult `formatting.blockquotes` from the style guide:
+
+**If `blockquotes: "never"`** — Don't suggest blockquotes
+**If `blockquotes: "rare"`** — Only suggest for truly exceptional insights
+**If `blockquotes: "occasional"`** — Suggest where they add emphasis (1-2 per article)
+**If `blockquotes: "frequent"`** — Actively look for opportunities (2-4 per article)
 
 Good pull quotes:
 - Capture a key insight succinctly
 - Are provocative or memorable
 - Work out of context
+- Feel like the "quotable" moment
 
-### 3. Em Dashes (calibrated by `formatting.em_dashes`)
+Present suggestion: "This insight about X feels like the key takeaway—should I format it as a blockquote for emphasis?"
+
+### 2. Text Emphasis Guidelines
+
+#### Bold
+
+Use bold for:
+- Key terms on first mention or definition
+- Critical takeaways or action items
+- Important warnings or caveats
+- Emphasizing the core point in a section
+
+Avoid bold for:
+- Entire sentences (use sparingly within sentences)
+- Common words that don't need emphasis
+- Decorative purposes or excessive highlighting
+
+#### Italic
+
+Use italics for:
+- Subtle emphasis or inflection
+- Technical terms, product names, or foreign words
+- Book/article/product titles
+- Internal dialogue or hypothetical scenarios
+- When you want to convey vocal stress ("I didn't say he stole the money")
+
+Avoid italics for:
+- Heavy emphasis (use bold instead)
+- Long passages (hard to read)
+- Overuse (loses impact)
+
+### 3. Visual Breaks (calibrated by `structure.visual_breaks`)
+
+**If `visual_breaks: "minimal"`**
+- Allow longer paragraphs (6-8 sentences acceptable)
+- Fewer section breaks
+- Dense prose style
+
+**If `visual_breaks: "moderate"`**
+- Standard paragraph lengths (3-5 sentences)
+- Regular section breaks
+- Balanced white space
+
+**If `visual_breaks: "generous"`**
+- Shorter paragraphs (2-4 sentences)
+- Frequent section breaks
+- More breathing room between ideas
+- Liberal use of single-sentence paragraphs for impact
+
+### 4. Em Dashes (calibrated by `formatting.em_dashes`)
 
 | Setting | Action |
 |---------|--------|
@@ -50,7 +135,7 @@ Good pull quotes:
 | 3-5 | Use sparingly (max 1-2 per article) |
 | 6-10 | Acceptable to use where appropriate |
 
-### 4. Emoji Usage (calibrated by `formatting.emojis`)
+### 5. Emoji Usage (calibrated by `formatting.emojis`)
 
 | Setting | Action |
 |---------|--------|
@@ -59,7 +144,7 @@ Good pull quotes:
 | 4-6 | Occasional use in headers or key points |
 | 7-10 | Liberal use throughout |
 
-### 5. AI Tell Removal (always applied)
+### 6. AI Tell Removal (always applied)
 
 Remove or rephrase these common AI patterns:
 
@@ -82,7 +167,7 @@ Remove or rephrase these common AI patterns:
 - "When it comes to [X]..."
 - "[X] is a [Y] that [Z]" (weak opener pattern)
 
-### 6. Tone Consistency (calibrated by `voice.tone`)
+### 7. Tone Consistency (calibrated by `voice.tone`)
 
 Review entire article for tone drift:
 - Casual (0-3): Conversational, contractions okay, "you" and "I"
@@ -91,7 +176,7 @@ Review entire article for tone drift:
 
 Flag sections where tone shifts unexpectedly.
 
-### 7. Prose Tightening (always applied)
+### 8. Prose Tightening (always applied)
 
 **Remove:**
 - Redundant words ("very unique" → "unique")
@@ -104,13 +189,13 @@ Flag sections where tone shifts unexpectedly.
 - Long sentences → break into shorter ones
 - Weak verbs → stronger alternatives
 
-### 8. Spelling & Grammar (always applied)
+### 9. Spelling & Grammar (always applied)
 
 - Fix typos
 - Correct grammar errors
 - Ensure consistent punctuation style
 
-### 9. Flow & Transitions
+### 10. Flow & Transitions
 
 - Ensure smooth transitions between sections
 - Check that each section connects logically to the next
@@ -123,10 +208,15 @@ After completing the editor pass, provide a summary of changes:
 ```
 Editorial pass complete! Here's what I updated:
 
+**Content Enhancements:**
+- Added comparison table in Section 2 (based on style guide: examples="some")
+- Added code snippet example in Section 4
+- Added 1 blockquote in Section 1 to emphasize key insight (based on style guide: blockquotes="occasional")
+
 **Formatting:**
 - Added 2 bulleted lists
-- Bolded 5 key terms
-- Added 1 pull quote
+- Bolded 5 key terms at first mention
+- Applied moderate visual breaks (standard paragraph lengths per style guide)
 
 **Tightening:**
 - Removed 3 instances of "Additionally"

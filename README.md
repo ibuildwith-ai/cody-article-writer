@@ -2,7 +2,7 @@
 
 ![Cody Article Writer Logo](images/cody-article-writer-logo.png)
 
-[![Version](https://img.shields.io/badge/version-1.6-blue)](Release%20Notes.md)
+[![Version](https://img.shields.io/badge/version-1.7-blue)](Release%20Notes.md)
 [![License](https://img.shields.io/badge/license-Custom-orange)](LICENSE.md)
 [![iBuildWith.ai](https://img.shields.io/badge/by-iBuildWith.ai-20c05b)](https://www.ibuildwith.ai)
 
@@ -111,14 +111,15 @@ Extract to your skills folder. Learn more [here](https://developers.openai.com/c
 Create and save style guides that capture your unique voice:
 
 - **Voice** — Tone (casual to professional), humor level, opinion strength, technical depth
-- **Formatting** — Structure density, emoji usage, em dash frequency
-- **Structure** — Opening styles (narrative, direct, tension, contextual) and closing styles (CTA, summary, callback, provocation, key takeaways)
+- **Formatting** — Emoji usage, em dash frequency, blockquote preferences
+- **Structure** — Opening/closing styles, visual breaks (white space), example preferences (lists, tables, diagrams, code, quotes, case studies)
 - **Context** — Author role, audience role, expertise levels, relationship dynamics
 
 Style guides are applied progressively throughout the workflow:
 - **Voice + Context** during thesis development
 - **Structure** during outline creation
 - **Formatting** during section writing
+- **Content enhancement** during editorial review (examples, blockquotes)
 
 ![Style Guide Example](images/user-style-guide.png)
 
@@ -139,11 +140,13 @@ Every phase includes iteration loops. AI acts as a firm sounding board, providin
 
 An optional AI editing phase calibrated to your style guide that:
 
-- Adds formatting (lists, bold, pull quotes) based on density settings
-- Removes AI tells ("Additionally", "It's important to note...", excessive em dashes)
-- Tightens prose and fixes grammar
-- Ensures tone consistency
-- Preserves your original as backup
+- **Content enhancement** — Suggests contextual examples (tables, code snippets, diagrams) and blockquotes based on your style preferences
+- **Visual breaks** — Applies your preferred paragraph spacing and white space settings
+- **Text emphasis** — Adds strategic bold and italic formatting following editorial best practices
+- **AI tell removal** — Removes common AI patterns ("Additionally", "It's important to note...", excessive em dashes)
+- **Prose tightening** — Fixes grammar, improves flow, strengthens weak verbs
+- **Tone consistency** — Ensures your voice remains consistent throughout
+- **Original preserved** — Your unedited draft is always saved as backup
 
 ![Editor Style Guide](images/editor-style-guide.png)
 
@@ -170,11 +173,13 @@ This centralized approach makes it easy to find all your Cody-generated work, ba
 
 Cody Article Writer acts as a **firm sounding board**, not a sycophant:
 
-- Provides honest feedback on weak ideas
-- Challenges assumptions and points out gaps
-- Offers constructive critique instead of empty praise
-- Maintains objective assessment even when you disagree
-- Helps you produce your best work, not just feel good
+- **Honest feedback** — Provides constructive critique on weak ideas, doesn't flatter or excessively agree
+- **Challenges assumptions** — Points out gaps, suggests alternatives, pushes back when needed
+- **Objective assessment** — Maintains factual consistency regardless of how you phrase questions or whether you disagree
+- **Quality over comfort** — Explicitly calls out when you're optimizing for speed at the expense of correctness or clarity
+- **Transparent reasoning** — Clearly states assumptions and explains disagreements with specifics
+
+Goal: Help you produce your best work through honest collaboration, not make you feel good through empty praise
 
 ## Requirements
 

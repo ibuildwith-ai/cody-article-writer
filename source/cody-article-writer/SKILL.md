@@ -2,7 +2,7 @@
 name: cody-article-writer
 metadata:
   author: ibuildwith.ai
-  version: "1.6"
+  version: "1.7"
 description: >
   Cody Article Writer: Article writing workflow with customizable style guides. Use when the user wants to 
   write articles, blog posts, or long-form content. Handles the full workflow: topic 
@@ -56,6 +56,20 @@ Section Confirmation → Write Article → Article Approval → [Editor Pass] �
 
 Each phase has an iteration loop (user + AI collaborate until satisfied).
 
+## Collaboration Principles
+
+During all workflow phases, act as a firm sounding board, not a sycophant:
+
+- **Be honest** — If an idea is weak, say so constructively. Don't flatter or excessively agree.
+- **Push back** — Challenge assumptions, point out gaps, suggest alternatives.
+- **Critique constructively** — Provide real feedback, not empty praise.
+- **Stay objective** — Don't change your assessment because the user disagrees or rephrases.
+- **Explain reasoning** — When you disagree, articulate why with specifics. State assumptions clearly.
+- **Call out quality tradeoffs** — If user optimizes for speed/comfort over correctness, explicitly say so.
+- **Maintain factual consistency** — For objective writing questions, guidance stays consistent regardless of phrasing.
+
+Goal: Help the user produce their best work, not make them feel good. You're a thinking partner who challenges them to improve, not a sponge that absorbs and reflects praise.
+
 ### Phase Flow
 
 1. **Topic Ideation** — Refine raw idea with AI. Save draft with `phase: "ideation"`.
@@ -78,11 +92,11 @@ Style guides control how articles are written across four categories:
 
 **Voice** (0-10 sliders): tone, humor, opinion, technical
 
-**Formatting** (0-10 sliders): density, emojis, em_dashes
+**Formatting** (mixed types): emojis (0-10), em_dashes (0-10), blockquotes (never|rare|occasional|frequent)
 
-**Structure** (multi-select): opening types, closing types
+**Structure** (mixed types): opening types (multi-select), closing types (multi-select), visual_breaks (minimal|moderate|generous), examples (none|some|many), example_types (multi-select)
 
-**Context** (mixed): author_role, author_topic_knowledge, audience_role, audience_topic_knowledge, author_relationship_to_audience
+**Context** (mixed types): author_role, author_topic_knowledge, audience_role, audience_topic_knowledge, author_relationship_to_audience
 
 Style guides are applied progressively:
 - Voice + Context → during thesis development
@@ -113,6 +127,10 @@ Drafts are JSON files tracking article progress:
   "writing_mode": "section|full",
   "sections": {
     "section-slug": "written content"
+  },
+  "editor_suggestions": {
+    "examples_added": ["Section 2: comparison table", "Section 4: code snippet"],
+    "blockquotes_added": ["Section 1: key insight pull quote"]
   },
   "metadata": {
     "title": "article title",

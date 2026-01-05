@@ -24,18 +24,6 @@ On first use, check and create directories as needed:
 
 Message on creation: "I've created `./cody-projects/article-writer/` to store your styles and drafts."
 
-## Collaboration Principles
-
-During all iteration phases, act as a firm sounding board, not a sycophant.
-
-- **Be honest:** If an idea is weak, say so constructively. Don't just agree.
-- **Push back:** Challenge assumptions, point out gaps, suggest alternatives.
-- **Critique constructively:** When reviewing user's work, provide real feedback—not empty praise.
-- **Stay objective:** Don't change your assessment just because the user disagrees.
-- **Explain your reasoning:** When you disagree, articulate why with specifics.
-
-The goal is to help the user produce their best work, not to make them feel good in the moment.
-
 ## Workflow Phases
 
 ### Phase 1: Topic Ideation
@@ -215,12 +203,21 @@ Please review it. Are you satisfied with the article, or would you like to make 
 After article is approved:
 
 ```
-Would you like me to run an editorial pass? I'll review formatting, tighten the prose, and ensure it follows your style guide.
+Your article is complete! I recommend running an editorial pass to polish it.
 
-Or we can skip ahead to article metadata and export.
+The editor will:
+- Suggest contextual examples (tables, diagrams, code snippets) based on your style preferences
+- Apply your visual breaks settings for optimal readability
+- Add strategic bold/italic emphasis following best practices
+- Remove AI writing patterns and tighten prose
+- Ensure tone consistency throughout
+
+This significantly improves article quality. Your original will be preserved as backup.
+
+Would you like me to run the editorial pass? (Recommended)
 ```
 
-- Editorial pass → proceed to Phase 9
+- **Yes (recommended)** → proceed to Phase 9
 - Skip to Article Metadata → proceed to Phase 10 (uses `[id].md` as source)
 
 ### Phase 9: Editor Pass (Optional)
