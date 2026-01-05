@@ -1,15 +1,16 @@
 ---
 name: cody-article-writer
+description: >
+  Cody Article Writer: Article writing workflow with customizable style guides. Use when the user wants to
+  write articles, blog posts, or long-form content. Handles the full workflow: topic
+  ideation, thesis development, outlining, section-by-section writing, article metadata generation,
+  and markdown export. Also handles style guide management including commands like
+  "list writing styles", "create a new article style", "edit my writing style",
+  "delete style", "show my drafts", "continue my article", or "show my articles".
+license: LICENSE.md
 metadata:
   author: ibuildwith.ai
   version: "1.7"
-description: >
-  Cody Article Writer: Article writing workflow with customizable style guides. Use when the user wants to 
-  write articles, blog posts, or long-form content. Handles the full workflow: topic 
-  ideation, thesis development, outlining, section-by-section writing, article metadata generation, 
-  and markdown export. Also handles style guide management including commands like 
-  "list writing styles", "create a new article style", "edit my writing style", 
-  "delete style", "show my drafts", "continue my article", or "show my articles".
 ---
 
 # Cody Article Writer
