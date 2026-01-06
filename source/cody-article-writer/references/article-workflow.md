@@ -26,23 +26,134 @@ Message on creation: "I've created `./cody-projects/article-writer/` to store yo
 
 ## Workflow Phases
 
-### Phase 1: Topic Ideation
+### Phase 1: Topic Ideation (with Exploratory Research)
 
-**Goal:** Refine the raw topic idea into something focused.
+**Goal:** Refine the raw topic idea into something focused using current web research.
+
+**Research Integration Point 1: Exploratory Research (Always Happens)**
 
 1. User provides initial topic idea
 2. Capture raw input as `initial_idea` (preserve exactly as user typed it)
-3. Iterate with AI:
-   - Explore angles
-   - Narrow or expand scope
-   - Identify unique perspective
-4. Check: "Ready to form a thesis?"
-   - No → continue refining
-   - Yes → proceed to style selection
+3. **Perform exploratory research:**
+   - Use WebSearch to perform 3-5 searches related to the topic
+   - Search queries should help understand: current trends, recent data, common angles
+   - **Why always research:** AI's training data may be outdated; current information informs better ideation
+   - Save searches performed and URLs reviewed to `exploratory_research` object
+4. Iterate with AI:
+   - Explore angles informed by research findings
+   - Narrow or expand scope based on what research reveals
+   - Identify unique perspective using current landscape knowledge
+5. Check: "Ready to form a thesis?"
+   - No → continue refining (may do additional exploratory searches if needed)
+   - Yes → proceed to Research Planning
 
-**Draft state:** Save with `phase: "ideation"`, capture `initial_idea` (raw input) and `topic` (refined version)
+**Draft state:** Save with `phase: "ideation"`, capture:
+```json
+{
+  "topic": {
+    "initial_idea": "raw user input",
+    "refined_topic": "refined version after iteration",
+    "exploratory_research": {
+      "searches_performed": ["query1", "query2", "query3"],
+      "sources_reviewed": ["url1", "url2", "url3"],
+      "date": "ISO timestamp"
+    }
+  }
+}
+```
 
-### Phase 2: Style Guide Selection
+### Phase 2: Research Planning (Optional)
+
+**Goal:** Determine if comprehensive research is needed and gather approved sources.
+
+**Research Integration Points 2-3: Research Configuration**
+
+Ask user about research needs:
+
+```
+Your topic is refined and ready. Do you want to gather comprehensive research sources for this article?
+
+This means I'll:
+- Search for authoritative sources on your topic
+- Present them for your approval
+- Use them throughout writing to inform content
+- Optionally add citations in the final article
+
+Would you like to do comprehensive research for this article?
+```
+
+**If user says NO:**
+- Set `research.depth = "none"`
+- Skip to Phase 3: Style Guide Selection
+- (Exploratory research from Phase 1 is still saved)
+
+**If user says YES:**
+
+1. **Ask about research depth:**
+   ```
+   How much research do you need for this article?
+
+   - Light: A few key sources for credibility (1-5 sources)
+   - Medium: Multiple sources, key claims cited (6-11 sources)
+   - Heavy: Extensively researched, most claims cited (12-20 sources)
+   ```
+
+2. **Gather sources using WebSearch:**
+   - Perform targeted searches based on refined topic
+   - Present 5-25 potential sources (adjust based on depth: 5-8 for light, 10-15 for medium, 15-25 for heavy)
+   - For each source show: title, URL, domain, brief relevance note
+
+3. **User approves sources:**
+   ```
+   I found these sources. Review and let me know:
+   - Which to keep (check the ones you want)
+   - Which to remove
+   - Any specific URLs you want me to add
+   - Which sources are REQUIRED (must be incorporated) vs optional
+   ```
+
+4. **Fetch approved sources using WebFetch:**
+   - Read each approved URL
+   - Extract: title, author (if available), date (if available), relevant excerpt
+   - Save to `approved_sources` array
+
+5. **Configure citations:**
+   ```
+   Do you want citations in your final exported article?
+
+   - Yes: I'll insert [^1], [^2] markers and generate a References section
+   - No: I'll still use these sources to inform content, but won't show citations
+   ```
+
+   Set `include_citations_in_export` based on response
+   Set `citation_style = "footnotes"` (current standard)
+
+**Draft state:** Update `phase: "research"`, save:
+```json
+{
+  "research": {
+    "depth": "light|medium|heavy",
+    "include_citations_in_export": true|false,
+    "citation_style": "footnotes",
+    "approved_sources": [
+      {
+        "url": "https://example.com/article",
+        "title": "Article Title",
+        "author": "Author Name (optional)",
+        "date": "2024-01-15 (optional)",
+        "domain": "example.com",
+        "required": true|false,
+        "relevance": "Why this source matters",
+        "excerpt": "Cached relevant content",
+        "accessed": "ISO timestamp"
+      }
+    ],
+    "citations_used": []
+  }
+}
+```
+
+### Phase 3: Style Guide Selection
 
 **Goal:** Select or create the style guide for this article.
 
@@ -84,7 +195,7 @@ Message on creation: "I've created `./cody-projects/article-writer/` to store yo
 
 **Draft state:** Update `style_guide` reference
 
-### Phase 3: Title & Thesis
+### Phase 4: Title & Thesis (with Research)
 
 **Goal:** Craft a compelling title and clear thesis statement.
 
@@ -93,7 +204,16 @@ Apply voice and context from style guide to inform:
 - Strength of thesis claim
 - Audience-appropriate framing
 
-1. Generate title and thesis options
+**Research Integration Point 4: Use Sources During Thesis Development**
+
+If `research.depth != "none"`:
+1. Review `approved_sources` from Phase 2
+2. Use source excerpts to inform thesis development:
+   - For required sources: ensure thesis accommodates their key findings
+   - For optional sources: use if relevant to strengthen thesis
+3. If gaps discovered, may add more sources (iteration loop)
+
+1. Generate title and thesis options (informed by research if enabled)
 2. Iterate until user approves
 3. Check: "Ready for outline?"
    - No → continue refining
@@ -101,7 +221,7 @@ Apply voice and context from style guide to inform:
 
 **Draft state:** Update `phase: "thesis"`, save `title` and `thesis`
 
-### Phase 4: Outline
+### Phase 5: Outline (with Research)
 
 **Goal:** Create the article structure.
 
@@ -109,7 +229,16 @@ Extract **structure** settings from style guide:
 - Opening type(s) → shapes introduction approach
 - Closing type(s) → shapes conclusion approach
 
-1. Generate outline based on thesis and structure settings
+**Research Integration Point 5: Use Sources During Outline Development**
+
+If `research.depth != "none"`:
+1. Review `approved_sources` to understand what evidence/examples are available
+2. Structure outline to incorporate:
+   - Required sources: plan sections that will use these
+   - Optional sources: identify where they might strengthen arguments
+3. If outline reveals gaps in research, may add more sources (iteration loop)
+
+1. Generate outline based on thesis, structure settings, and research (if enabled)
 2. Iterate until user approves
 3. Check: "Start writing?"
    - No → continue refining
@@ -117,7 +246,7 @@ Extract **structure** settings from style guide:
 
 **Draft state:** Update `phase: "outline"`, save `outline` array
 
-### Phase 5: Section Confirmation
+### Phase 6: Section Confirmation
 
 **Goal:** Confirm section breakdown before writing.
 
@@ -138,14 +267,16 @@ Update outline based on any changes.
 
 **Draft state:** Update `outline` with confirmed sections
 
-### Phase 6: Write Article
+### Phase 7: Write Article (with Citations)
 
-**Goal:** Write the article content.
+**Goal:** Write the article content, incorporating research and citations if enabled.
 
 Extract **formatting** settings from style guide:
 - Formatting density
 - Emoji usage
 - EM dash frequency
+
+**Research Integration Point 6: Use Sources and Insert Citations During Writing**
 
 #### Writing Mode Decision
 
@@ -161,7 +292,13 @@ How would you like to write this article?
 #### Mode A: Section by Section
 
 For each section:
-1. Write section draft (AI)
+1. **Write section draft (AI):**
+   - If `research.depth != "none"`:
+     - Reference relevant `approved_sources` for this section
+     - Ensure required sources are incorporated
+     - If `include_citations_in_export == true`: insert inline citations `[^1]`, `[^2]`
+     - Track citations in `citations_used` array
+   - Apply formatting settings from style guide
 2. Present to user
 3. Iterate until approved
 4. Mark section `status: "complete"`
@@ -172,16 +309,30 @@ When all sections complete → AI declares "Article Completed" → proceed to Ar
 
 #### Mode B: Full Draft First
 
-1. Write entire article at once (AI)
+1. **Write entire article at once (AI):**
+   - If `research.depth != "none"`:
+     - Reference relevant `approved_sources` throughout
+     - Ensure all required sources are incorporated
+     - If `include_citations_in_export == true`: insert inline citations `[^1]`, `[^2]`
+     - Track citations in `citations_used` array
+   - Apply formatting settings from style guide
 2. Populate all `sections` in the JSON (same structure as Mode A, just all at once)
 3. Save to `drafts/[draft-id].md`
 4. AI declares "Article Completed" → proceed to Article Approval
 
+**Citation Format in Content:**
+```markdown
+AI systems achieved 94.2% accuracy in diagnostic imaging.[^1] The market
+is projected to reach $12.7 billion by 2027.[^2]
+```
+
+Citations are inserted directly into section content and stored in JSON.
+
 **Working draft file:** Create `drafts/[draft-id].md` during writing. This gives the user a readable file to review instead of dumping content in chat.
 
-**Draft state:** Update `phase: "writing"`, save `writing_mode` ("section" or "full"), save completed sections to `sections` object
+**Draft state:** Update `phase: "writing"`, save `writing_mode` ("section" or "full"), save completed sections with inline citations to `sections` object, populate `citations_used` array
 
-### Phase 7: Article Approval
+### Phase 8: Article Approval
 
 **Goal:** Get user approval on the completed article.
 
@@ -198,7 +349,7 @@ Please review it. Are you satisfied with the article, or would you like to make 
 
 **Draft state:** Update `phase: "approval"`
 
-### Phase 8: Editorial Decision
+### Phase 9: Editorial Decision
 
 After article is approved:
 
@@ -220,7 +371,7 @@ Would you like me to run the editorial pass? (Recommended)
 - **Yes (recommended)** → proceed to Phase 9
 - Skip to Article Metadata → proceed to Phase 10 (uses `[id].md` as source)
 
-### Phase 9: Editor Pass (Optional)
+### Phase 10: Editor Pass (Optional)
 
 **Goal:** Polish the article with formatting, tightening, and style guide adherence.
 
@@ -254,9 +405,11 @@ Approve the changes, or let me know what to adjust.
 - Approve → proceed to Phase 10 (uses `[id]-editorpass.md` as source)
 - Iterate → make requested changes to `-editorpass.md`, show updated summary
 
+**Note on citations:** Editor pass does NOT modify citations. Citation markers and references remain untouched.
+
 **Draft state:** Update `phase: "editor"`
 
-### Phase 10: Article Metadata Generation
+### Phase 11: Article Metadata Generation
 
 **Goal:** Generate metadata for the article frontmatter.
 
@@ -286,31 +439,59 @@ Use this, or provide your own filename (extension will always be .md):
 
 **Draft state:** Update `phase: "metadata"`, save `metadata` object and `filename`
 
-### Phase 11: Export Article
+### Phase 12: Export Article (with Citation Choice)
 
-**Goal:** Generate final markdown file.
+**Goal:** Generate final markdown file with optional citations.
+
+**Citation Decision:**
+
+If `research.depth != "none"`:
+```
+Do you want to include citations in the exported article?
+
+- Yes: Citation markers ([^1], [^2]) and References section will be included
+- No: Citations will be removed, but sources remain archived for potential re-export
+```
+
+Save user choice for this export (doesn't change `include_citations_in_export` in draft state).
+
+**Export Process:**
 
 1. Determine source file:
    - If editor pass was done → use `drafts/[draft-id]-editorpass.md`
    - If editor pass was skipped → use `drafts/[draft-id].md`
+
 2. Load template from skill's `assets/templates/article_default.md`
-3. Fill placeholders:
+
+3. **Handle citations based on user choice:**
+   - If user chose YES to include citations:
+     - Keep all `[^1]`, `[^2]` markers in content
+     - Generate References section from `citations_used` array
+     - Format: `[^1]: Author. "Title." Domain. URL`
+   - If user chose NO or no research:
+     - Strip all `[^X]` citation markers from content using regex
+     - Don't include References section
+
+4. Fill template placeholders:
    - `{{title}}` → article title
    - `{{date}}` → current date
    - `{{description}}` → meta description
    - `{{keywords}}` → keywords array
    - `{{author}}` → from style guide context
-   - `{{content}}` → content from source file
-4. Save to `cody-projects/article-writer/articles/[filename].md`
-5. Move `drafts/[draft-id].json` to `cody-projects/article-writer/archive/`
-6. Delete `drafts/[draft-id].md`
-7. Delete `drafts/[draft-id]-editorpass.md` (if exists)
+   - `{{content}}` → content (with or without citations)
+   - `{{references}}` → References section (if citations included, else empty)
+
+5. Save to `cody-projects/article-writer/articles/[filename].md`
+6. Move `drafts/[draft-id].json` to `cody-projects/article-writer/archive/` (preserves ALL research data)
+7. Delete `drafts/[draft-id].md`
+8. Delete `drafts/[draft-id]-editorpass.md` (if exists)
 
 **Final message:**
 ```
 Article exported successfully!
 - Article: cody-projects/article-writer/articles/[filename].md
 - Draft archived: cody-projects/article-writer/archive/[draft-id].json
+  (All research sources preserved for potential re-export)
 ```
 
 ## Draft Management Commands

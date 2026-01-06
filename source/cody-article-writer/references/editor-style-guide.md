@@ -2,6 +2,8 @@
 
 This guide defines the editorial pass workflow. The editor reviews the article after writing is complete and applies formatting, tightening, and style guide adherence.
 
+**Important:** The editor pass does **NOT** modify research citations. Citation markers (`[^1]`, `[^2]`, etc.) and the References section remain untouched. Research and citations are handled separately during writing and export phases.
+
 ## Files
 
 | File | Purpose |

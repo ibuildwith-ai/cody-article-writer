@@ -7,3 +7,5 @@ author: "{{author}}"
 ---
 
 {{content}}
+
+{{references}}

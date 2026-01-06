@@ -1,5 +1,56 @@
 # Release Notes
 
+> ### Version 2.0
+>> Research-backed articles with web sources, citations, and comprehensive source management.
+>>> January 5, 2026
+
+---
+
+### Added
+
+**Research Workflow:**
+- **Exploratory Research (always on)** — AI performs web searches during Topic Ideation to inform topic refinement with current data (training data may be outdated)
+- **Research Planning phase** — Optional comprehensive research workflow:
+  - Choose research depth (light: 1-5 sources, medium: 6-11 sources, heavy: 12-20 sources)
+  - Gather and approve web sources using WebSearch and WebFetch tools
+  - Configure citation preferences (include/exclude in export)
+- **Multi-phase integration** — Research informs 6 workflow phases:
+  - Phase 1 (Topic Ideation): Exploratory research always happens
+  - Phase 2 (Research Planning): Gather comprehensive sources
+  - Phase 4 (Thesis): Use sources to inform thesis development
+  - Phase 5 (Outline): Use sources to structure article
+  - Phase 7 (Writing): Reference sources and insert inline citations
+  - Phase 12 (Export): Choose to include or strip citations
+
+**Source Management:**
+- **Source approval system** — Review and approve all sources before AI uses them
+- **Required vs. Optional classification** — Mark sources as required (must incorporate) vs. optional (use if relevant)
+- **Rich source metadata** — Track URLs, titles, authors, dates, excerpts, relevance notes, and access timestamps
+- **Archive preservation** — All approved sources preserved in JSON archive for potential re-export with different citation settings
+- **Source usage tracking** — Monitor which sources were cited and in which sections via `citations_used` array
+
+**Citations:**
+- **Inline citation markers** — AI inserts `[^1]`, `[^2]` markers as it references sources during writing
+- **References section generation** — Auto-generated bibliography from cited sources at export using footnote format
+- **Export-time citation choice** — Decide whether to include citations in exported article:
+  - Yes: Keep citation markers and generate References section
+  - No: Strip citations but preserve sources in archive for re-export
+- **Editor pass preservation** — Editorial pass does not modify citation markers or references
+
+**Documentation:**
+- **research-workflow.md** — New 400+ line reference file with detailed instructions for all 6 research integration points
+
+### Changed
+- **Workflow expanded to 12 phases** (was 9) — Added Research Planning phase and renumbered subsequent phases
+- **Draft state JSON structure** — Added `topic.exploratory_research` and `research` objects with approved sources and citations tracking
+- **Export template** — Now supports optional `{{references}}` placeholder for bibliography
+- **Phase numbering** — Research Planning is now Phase 2, Style Selection moved to Phase 3, etc.
+
+### Fixed
+- No fixes in this release
+
+---
+
 > ### Version 1.7
 >> Enhanced style guide system with improved structure settings and editorial content enhancement pass.
 >>> January 5, 2026

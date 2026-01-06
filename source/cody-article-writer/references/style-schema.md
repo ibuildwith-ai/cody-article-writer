@@ -2,6 +2,8 @@
 
 Style guides are saved as JSON files in `cody-projects/article-writer/styles/`.
 
+**Important:** Research settings (research depth, citations, approved sources) are **NOT** part of style guides. Research is configured per-article during the Research Planning phase. Style guides are reusable across articles regardless of research needs.
+
 ## File Naming
 
 - Filename: kebab-case version of the style name

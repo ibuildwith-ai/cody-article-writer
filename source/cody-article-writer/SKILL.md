@@ -1,16 +1,17 @@
 ---
 name: cody-article-writer
 description: >
-  Cody Article Writer: Article writing workflow with customizable style guides. Use when the user wants to
-  write articles, blog posts, or long-form content. Handles the full workflow: topic
-  ideation, thesis development, outlining, section-by-section writing, article metadata generation,
-  and markdown export. Also handles style guide management including commands like
+  Cody Article Writer: Research-backed article writing workflow with customizable style guides and citations.
+  Use when the user wants to write articles, blog posts, or long-form content with optional web research
+  and source citations. Handles the full workflow: topic ideation with exploratory research, comprehensive
+  research planning, thesis development, outlining, section-by-section writing with citations, article
+  metadata generation, and markdown export. Also handles style guide management including commands like
   "list writing styles", "create a new article style", "edit my writing style",
   "delete style", "show my drafts", "continue my article", or "show my articles".
 license: LICENSE.md
 metadata:
   author: ibuildwith.ai
-  version: "1.7"
+  version: "2.0"
 ---
 
 # Cody Article Writer
@@ -51,11 +52,19 @@ Notify user: "I've created `./cody-projects/article-writer/` to store your style
 ## Article Workflow Overview
 
 ```
-Start → Topic Ideation → Style Selection → Title/Thesis → Outline → 
-Section Confirmation → Write Article → Article Approval → [Editor Pass] → Article Metadata → Export Article → Finished
+Start → Topic Ideation (with exploratory research) → Research Planning → Style Selection →
+Title/Thesis (with research) → Outline (with research) → Section Confirmation →
+Write Article (with citations) → Article Approval → [Editor Pass] → Article Metadata →
+Export Article (citation choice) → Finished
 ```
 
 Each phase has an iteration loop (user + AI collaborate until satisfied).
+
+Research is integrated at multiple phases:
+- **Exploratory research** (always on) during Topic Ideation to inform topic refinement
+- **Comprehensive research** (optional) gathering sources before thesis/outline/writing
+- **Source usage** during thesis, outline, and writing phases
+- **Citations** inserted during writing if enabled, displayed at export if user chooses
 
 ## Collaboration Principles
 
@@ -73,19 +82,21 @@ Goal: Help the user produce their best work, not make them feel good. You're a t
 
 ### Phase Flow
 
-1. **Topic Ideation** — Refine raw idea with AI. Save draft with `phase: "ideation"`.
-2. **Style Selection** — Choose existing style or create new one. Load voice + context.
-3. **Title & Thesis** — Craft title and thesis using voice/context. Iterate until approved.
-4. **Outline** — Generate structure using style's opening/closing types. Iterate until approved.
-5. **Section Confirmation** — Present sections from outline, allow user to split/combine.
-6. **Write Article** — Choose writing mode (section-by-section or full draft), then write and iterate.
-7. **Article Approval** — User reviews completed article and approves or requests changes.
-8. **Editorial Decision** — Offer optional editor pass or skip to Article Metadata.
-9. **Editor Pass** (optional) — Polish formatting, tighten prose, apply style guide. Creates `-editorpass.md`.
-10. **Article Metadata Generation** — Generate title, description, keywords. Get approval.
-11. **Export Article** — Fill template, save to `articles/`, clean up drafts, archive JSON.
+1. **Topic Ideation** — Refine raw idea with AI. **Always perform exploratory research** using WebSearch to inform topic refinement (AI's training data may be outdated). Save searches and URLs to draft. Save draft with `phase: "ideation"`.
+2. **Research Planning** — Ask user if they want comprehensive research. If yes, gather sources using WebSearch, get user approval, set citation preferences, mark sources as required/optional. If no, skip to Style Selection.
+3. **Style Selection** — Choose existing style or create new one. Load voice + context.
+4. **Title & Thesis** — Craft title and thesis using voice/context. If research enabled, use approved sources to inform thesis. Iterate until approved.
+5. **Outline** — Generate structure using style's opening/closing types. If research enabled, use approved sources to inform outline. Iterate until approved.
+6. **Section Confirmation** — Present sections from outline, allow user to split/combine.
+7. **Write Article** — Choose writing mode (section-by-section or full draft), then write and iterate. If research enabled, reference approved sources and insert inline citations `[^1]` in content.
+8. **Article Approval** — User reviews completed article and approves or requests changes.
+9. **Editorial Decision** — Offer optional editor pass or skip to Article Metadata.
+10. **Editor Pass** (optional) — Polish formatting, tighten prose, apply style guide. Does NOT modify citations. Creates `-editorpass.md`.
+11. **Article Metadata Generation** — Generate title, description, keywords. Get approval.
+12. **Export Article** — If research enabled, ask user if they want citations included. Fill template, optionally generate References section, save to `articles/`, clean up drafts, archive JSON with all research data.
 
 For detailed phase instructions, see `references/article-workflow.md`.
+For research-specific instructions, see `references/research-workflow.md`.
 
 ## Style Guide System
 
@@ -116,10 +127,42 @@ Drafts are JSON files tracking article progress:
   "id": "unique-identifier-date",
   "created_at": "ISO timestamp",
   "updated_at": "ISO timestamp",
-  "phase": "ideation|thesis|outline|writing|approval|editor|metadata|export",
+  "phase": "ideation|research|thesis|outline|writing|approval|editor|metadata|export",
+  "topic": {
+    "initial_idea": "raw user input before refinement",
+    "refined_topic": "refined topic after ideation",
+    "exploratory_research": {
+      "searches_performed": ["query1", "query2"],
+      "sources_reviewed": ["url1", "url2"],
+      "date": "ISO timestamp"
+    }
+  },
+  "research": {
+    "depth": "none|light|medium|heavy",
+    "include_citations_in_export": true,
+    "citation_style": "footnotes",
+    "approved_sources": [
+      {
+        "url": "https://example.com/article",
+        "title": "Article Title",
+        "author": "Author Name (optional)",
+        "date": "2024-01-15 (optional)",
+        "domain": "example.com",
+        "required": true,
+        "relevance": "Why this source matters",
+        "excerpt": "Cached relevant content",
+        "accessed": "ISO timestamp"
+      }
+    ],
+    "citations_used": [
+      {
+        "source_url": "https://example.com/article",
+        "citation_count": 3,
+        "cited_in_sections": ["section-slug-1", "section-slug-2"]
+      }
+    ]
+  },
   "style_guide": "style-filename",
-  "initial_idea": "raw user input before refinement",
-  "topic": "refined topic",
   "title": "approved title",
   "thesis": "thesis statement",
   "outline": [
@@ -127,11 +170,11 @@ Drafts are JSON files tracking article progress:
   ],
   "writing_mode": "section|full",
   "sections": {
-    "section-slug": "written content"
+    "section-slug": "written content with inline citations [^1]"
   },
   "editor_suggestions": {
-    "examples_added": ["Section 2: comparison table", "Section 4: code snippet"],
-    "blockquotes_added": ["Section 1: key insight pull quote"]
+    "examples_added": ["Section 2: comparison table"],
+    "blockquotes_added": ["Section 1: pull quote"]
   },
   "metadata": {
     "title": "article title",
@@ -141,6 +184,12 @@ Drafts are JSON files tracking article progress:
   "filename": "user-approved-filename"
 }
 ```
+
+**Research field notes:**
+- `depth: "none"` means user skipped comprehensive research (only exploratory happened)
+- `required: true/false` marks sources that must be incorporated vs. optional
+- Citations are inserted inline during writing as `[^1]`, `[^2]`, etc.
+- `citations_used` tracks which approved sources actually got cited
 
 ## Export
 
@@ -152,17 +201,30 @@ Fill placeholders:
 - `{{description}}` → meta description
 - `{{keywords}}` → comma-separated keywords
 - `{{author}}` → from style guide's author_role
-- `{{content}}` → assembled sections
+- `{{content}}` → assembled sections (with or without citation markers based on user choice)
+- `{{references}}` → generated References section (if citations enabled)
+
+**Citation handling at export:**
+1. If `research.depth == "none"`, skip citation questions
+2. If research enabled, ask user: "Include citations in exported article?"
+3. If yes:
+   - Keep inline citation markers `[^1]`, `[^2]` in content
+   - Generate References section from `citations_used` array
+   - Format: `[^1]: Author. "Title." Domain. URL`
+4. If no:
+   - Strip all `[^X]` markers from content
+   - Don't include References section
 
 Filename: Suggest kebab-case from title (e.g., "When Context Becomes Content" → `when-context-becomes-content.md`). User can override. Extension always `.md`.
 
 Save to: `cody-projects/article-writer/articles/[filename].md`
-Archive draft to: `cody-projects/article-writer/archive/[draft-id].json`
+Archive draft to: `cody-projects/article-writer/archive/[draft-id].json` (preserves all research data for potential re-export)
 
 ## Resources
 
 - `references/style-schema.md` — Complete style guide field definitions
 - `references/style-workflow.md` — Style creation/editing workflow
-- `references/article-workflow.md` — Detailed article writing phases
+- `references/article-workflow.md` — Detailed article writing phases with research integration
+- `references/research-workflow.md` — Research-specific instructions for all 6 integration points
 - `references/editor-style-guide.md` — Editorial pass guidelines and checks
-- `assets/templates/article_default.md` — Default export template
+- `assets/templates/article_default.md` — Default export template with citation support
