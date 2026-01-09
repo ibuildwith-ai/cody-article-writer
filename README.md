@@ -6,9 +6,14 @@
 [![License](https://img.shields.io/badge/license-Custom-orange)](LICENSE.md)
 [![iBuildWith.ai](https://img.shields.io/badge/by-iBuildWith.ai-20c05b)](https://www.ibuildwith.ai)
 
-**Cody Article Writer** is an AI Agent Skill (following the [agentskills.io](https://agentskills.io/specification) specification) that transforms how you write articles. Instead of staring at a blank page, you collaborate with AI through a structured, iterative workflow with **web research, source citations**, and customizable style guides. Each phase includes iteration loops where nothing moves forward until you're satisfied - from topic ideation with research all the way to markdown export with optional citations.
+## Join our Discord Server
+Get the latest updates, news, and more by [joining our Discord community](https://discord.gg/Mz7vdRmpJH).
 
+## Star the Repo
 ⭐⭐ **If you find this skill helpful, please star this repo to show your support!** ⭐⭐
+
+## About Cody Article Writer
+Cody Article Writer is an AI Agent Skill (following the [agentskills.io](https://agentskills.io/specification) specification) that transforms how you write articles. Instead of staring at a blank page, you collaborate with AI through a structured, iterative workflow with **web research, source citations**, and customizable style guides. Each phase includes iteration loops where nothing moves forward until you're satisfied - from topic ideation with research all the way to markdown export with optional citations.
 
 ## Download
 
@@ -245,7 +250,7 @@ cody-projects/
 
 **iBuildWith.ai**
 
-© Copyright 2025 – Red Pill Blue Pill Studios, LLC – All Rights Reserved.
+© Copyright 2026 – Red Pill Blue Pill Studios, LLC – All Rights Reserved.
 
 Part of the Cody family of AI Agent Skills:
 - Cody Product Builder — Build products with AI

@@ -1,6 +1,6 @@
 # Cody Article Writer License
 
-© Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reserved.
+© Copyright 2026 - Red Pill Blue Pill Studios, LLC - All Rights Reserved.
 
 **Permission:** Permission is hereby granted to **use the Cody Article Writer solely for its intended purpose - AI-assisted article writing, content creation, and structured blog/article workflows. You may download or clone the official repository in accordance with this intended purpose.**
 
