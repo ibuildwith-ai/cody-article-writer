@@ -2,6 +2,19 @@
 
 This document provides detailed instructions for the 6 research integration points in the article writing workflow.
 
+## Table of Contents
+
+- [Research Integration Points](#research-integration-points)
+  - [Point 1: Exploratory Research (Phase 1 - Topic Ideation)](#point-1-exploratory-research-phase-1---topic-ideation)
+  - [Point 2: Research Planning Question (Phase 2)](#point-2-research-planning-question-phase-2)
+  - [Point 3: Research Configuration (Phase 2 continued)](#point-3-research-configuration-phase-2-continued)
+  - [Point 4: Use Sources During Thesis Development (Phase 4)](#point-4-use-sources-during-thesis-development-phase-4)
+  - [Point 5: Use Sources During Outline Development (Phase 5)](#point-5-use-sources-during-outline-development-phase-5)
+  - [Point 6: Use Sources and Insert Citations During Writing (Phase 7)](#point-6-use-sources-and-insert-citations-during-writing-phase-7)
+- [Citation Format Reference](#citation-format-reference)
+- [Research Workflow States](#research-workflow-states)
+- [Troubleshooting](#troubleshooting)
+
 ## Research Integration Points
 
 ### Point 1: Exploratory Research (Phase 1 - Topic Ideation)

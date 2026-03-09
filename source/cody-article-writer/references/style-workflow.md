@@ -46,7 +46,7 @@ Let's configure the voice for your style.
    0 = Casual, conversational | 10 = Professional, formal
 
 2. Humor (0-10): How much levity?
-   0 = Playful, witty | 10 = Serious, straightforward
+   0 = Serious, straightforward | 10 = Playful, witty
 
 3. Opinion (0-10): How strong is your viewpoint?
    0 = Balanced, presenting multiple sides | 10 = Opinionated, clear stance

@@ -51,7 +51,7 @@ Style guides are saved as JSON files in `cody-projects/article-writer/styles/`.
 | Field | 0 | 10 | Description |
 |-------|---|-----|-------------|
 | tone | Casual | Professional | Formality level |
-| humor | Playful | Serious | Use of wit and levity |
+| humor | Serious | Playful | Use of wit and levity |
 | opinion | Balanced | Opinionated | Strength of viewpoint |
 | technical | Less | More | Depth of technical detail |
 

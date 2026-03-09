@@ -1,17 +1,20 @@
 ---
 name: cody-article-writer
 description: >
-  Cody Article Writer: Research-backed article writing workflow with customizable style guides and citations.
-  Use when the user wants to write articles, blog posts, or long-form content with optional web research
-  and source citations. Handles the full workflow: topic ideation with exploratory research, comprehensive
-  research planning, thesis development, outlining, section-by-section writing with citations, article
-  metadata generation, and markdown export. Also handles style guide management including commands like
-  "list writing styles", "create a new article style", "edit my writing style",
-  "delete style", "show my drafts", "continue my article", or "show my articles".
+  Research-backed article writing workflow with customizable style guides and citations.
+  Use this skill whenever the user wants to write articles, blog posts, essays, thought leadership
+  pieces, or any long-form content — even if they don't explicitly say "article." Also use when
+  the user wants to do web research for a writing project, manage writing styles, or resume a draft.
+  Handles the full workflow: topic ideation with exploratory research, comprehensive research planning,
+  thesis development, outlining, section-by-section writing with citations, article metadata generation,
+  and markdown export. Also handles style guide management and draft management including commands like
+  "list writing styles", "create a new article style", "edit my writing style", "delete style",
+  "show my drafts", "continue my article", "show my articles", "show my archive",
+  or "re-export the X article".
 license: LICENSE.md
 metadata:
   author: ibuildwith.ai
-  version: "2.0"
+  version: "3.0"
 ---
 
 # Cody Article Writer
@@ -31,7 +34,25 @@ On first use, ensure the user's working directory exists:
    └── archive/
 ```
 
-Notify user: "I've created `./cody-projects/article-writer/` to store your styles and drafts."
+Notify user: "I've created `cody-projects/article-writer/` to store your styles and drafts."
+
+For new users (no existing data), write the current skill version to `cody-projects/article-writer/.cody-version`.
+
+## Version Check
+
+After Directory Setup and before any workflow begins, check for version migrations:
+
+1. Read the skill version from this file's frontmatter (the `version` field under `metadata`)
+2. Read `cody-projects/article-writer/.cody-version`
+   - If missing, treat as version "1.0" (pre-version user)
+   - If present, read the stored version string
+3. If stored version < skill version:
+   - Run each migration step in order between the stored and current versions
+   - After all migrations complete, write the current skill version to `.cody-version`
+   - Summarize all changes to the user in one message
+4. If stored version == skill version: skip, proceed normally
+
+For the migration chain and detailed steps, see `references/migrations.md`.
 
 ## Command Reference
 
@@ -214,6 +235,7 @@ Fill placeholders:
 4. If no:
    - Strip all `[^X]` markers from content
    - Don't include References section
+   - Remove the `{{references}}` placeholder line entirely from the output to avoid trailing whitespace
 
 Filename: Suggest kebab-case from title (e.g., "When Context Becomes Content" → `when-context-becomes-content.md`). User can override. Extension always `.md`.
 
@@ -227,4 +249,5 @@ Archive draft to: `cody-projects/article-writer/archive/[draft-id].json` (preser
 - `references/article-workflow.md` — Detailed article writing phases with research integration
 - `references/research-workflow.md` — Research-specific instructions for all 6 integration points
 - `references/editor-style-guide.md` — Editorial pass guidelines and checks
+- `references/migrations.md` — Version migration chain and upgrade steps
 - `assets/templates/article_default.md` — Default export template with citation support

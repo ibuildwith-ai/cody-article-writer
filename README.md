@@ -2,7 +2,7 @@
 
 ![Cody Article Writer Logo](images/cody-article-writer-logo.png)
 
-[![Version](https://img.shields.io/badge/version-2.0-blue)](Release%20Notes.md)
+[![Version](https://img.shields.io/badge/version-3.0-blue)](Release%20Notes.md)
 [![License](https://img.shields.io/badge/license-Custom-orange)](LICENSE.md)
 [![iBuildWith.ai](https://img.shields.io/badge/by-iBuildWith.ai-20c05b)](https://www.ibuildwith.ai)
 
@@ -227,7 +227,9 @@ cody-article-writer/
 │   ├── style-schema.md                # Style guide field definitions
 │   ├── style-workflow.md              # Style creation workflow
 │   ├── article-workflow.md            # Article writing phases
-│   └── editor-style-guide.md          # Editorial pass guidelines
+│   ├── research-workflow.md           # Research integration points
+│   ├── editor-style-guide.md          # Editorial pass guidelines
+│   └── migrations.md                  # Version migration chain
 └── assets/
     └── templates/
         └── article_default.md         # Export template
@@ -240,10 +242,11 @@ This structure is automatically created in your working directory when you start
 ```
 cody-projects/
 └── article-writer/
+    ├── .cody-version                  # Installed skill version tracker
     ├── articles/                      # Exported markdown articles
     ├── styles/                        # Custom style guides
     ├── drafts/                        # Work-in-progress articles
-    └── archives/                      # Completed article history
+    └── archive/                       # Completed article history
 ```
 
 ## Author

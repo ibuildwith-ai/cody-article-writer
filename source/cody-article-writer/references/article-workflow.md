@@ -2,6 +2,25 @@
 
 This workflow guides users through writing an article from idea to export.
 
+## Table of Contents
+
+- [Triggers](#triggers)
+- [Directory Initialization](#directory-initialization)
+- [Workflow Phases](#workflow-phases)
+  - [Phase 1: Topic Ideation (with Exploratory Research)](#phase-1-topic-ideation-with-exploratory-research)
+  - [Phase 2: Research Planning (Optional)](#phase-2-research-planning-optional)
+  - [Phase 3: Style Guide Selection](#phase-3-style-guide-selection)
+  - [Phase 4: Title & Thesis (with Research)](#phase-4-title--thesis-with-research)
+  - [Phase 5: Outline (with Research)](#phase-5-outline-with-research)
+  - [Phase 6: Section Confirmation](#phase-6-section-confirmation)
+  - [Phase 7: Write Article (with Citations)](#phase-7-write-article-with-citations)
+  - [Phase 8: Article Approval](#phase-8-article-approval)
+  - [Phase 9: Editorial Decision](#phase-9-editorial-decision)
+  - [Phase 10: Editor Pass (Optional)](#phase-10-editor-pass-optional)
+  - [Phase 11: Article Metadata Generation](#phase-11-article-metadata-generation)
+  - [Phase 12: Export Article (with Citation Choice)](#phase-12-export-article-with-citation-choice)
+- [Draft Management Commands](#draft-management-commands)
+
 ## Triggers
 
 - "I want to write an article about X"
@@ -344,7 +363,7 @@ The article is complete! I've saved it here:
 Please review it. Are you satisfied with the article, or would you like to make changes?
 ```
 
-- **Approved** → proceed to Editorial Decision (Phase 8)
+- **Approved** → proceed to Editorial Decision (Phase 9)
 - **Needs changes** → user specifies what to change (e.g., "In section 2, make X more concise"), AI updates the specific section in `sections` object, regenerates `[id].md`, loop until approved
 
 **Draft state:** Update `phase: "approval"`
@@ -368,8 +387,8 @@ This significantly improves article quality. Your original will be preserved as 
 Would you like me to run the editorial pass? (Recommended)
 ```
 
-- **Yes (recommended)** → proceed to Phase 9
-- Skip to Article Metadata → proceed to Phase 10 (uses `[id].md` as source)
+- **Yes (recommended)** → proceed to Phase 10
+- Skip to Article Metadata → proceed to Phase 11 (uses `[id].md` as source)
 
 ### Phase 10: Editor Pass (Optional)
 
@@ -402,7 +421,7 @@ Editorial pass complete! Here's what I updated:
 Approve the changes, or let me know what to adjust.
 ```
 
-- Approve → proceed to Phase 10 (uses `[id]-editorpass.md` as source)
+- Approve → proceed to Phase 11 (uses `[id]-editorpass.md` as source)
 - Iterate → make requested changes to `-editorpass.md`, show updated summary
 
 **Note on citations:** Editor pass does NOT modify citations. Citation markers and references remain untouched.

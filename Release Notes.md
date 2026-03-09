@@ -1,5 +1,32 @@
 # Release Notes
 
+> ### Version 3.0
+>> Version system, humor slider fix, improved triggering, and navigation improvements for reference files.
+>>> March 9, 2026
+
+---
+
+### Added
+
+**Version System:**
+- **Automatic version migration** — Skill now tracks its version in `cody-projects/article-writer/.cody-version` and automatically migrates user data when a new skill version is installed
+- **Migration chain** — Migrations run sequentially between stored and current versions, so users can skip versions safely (e.g., 2.0 → 4.0 runs all intermediate migrations)
+- **New reference file** `references/migrations.md` — Documents all migration steps for each version upgrade
+
+**Navigation:**
+- **Table of contents** added to `references/article-workflow.md` (529 lines) and `references/research-workflow.md` (538 lines) for faster navigation to specific phases and integration points
+
+### Changed
+- **Humor slider direction fixed** — `voice.humor` now runs 0 (Serious) to 10 (Playful), consistent with other sliders where higher = more of the named quality. Previously was inverted (0 = Playful, 10 = Serious). Existing style guides are migrated automatically with no change in behavior.
+- **Skill description improved** — Removed redundant skill name prefix, added broader trigger terms (essays, thought leadership), added missing commands ("show my archive", "re-export"), and improved triggering language per skill-creator framework guidelines
+- **Export citation handling** — Added explicit guidance to remove the `{{references}}` placeholder line entirely when citations are not included, preventing trailing whitespace in exported articles
+
+### Fixed
+- **Phase cross-reference errors** — Fixed 4 off-by-one errors in `references/article-workflow.md` where inline phase references pointed to wrong phases (Phase 8 → 9, Phase 9 → 10, Phase 10 → 11)
+- **Path prefix inconsistency** — Normalized `./cody-projects/` to `cody-projects/` throughout
+
+---
+
 > ### Version 2.0
 >> Research-backed articles with web sources, citations, and comprehensive source management.
 >>> January 5, 2026
