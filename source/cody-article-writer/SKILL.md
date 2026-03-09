@@ -1,16 +1,15 @@
 ---
 name: cody-article-writer
 description: >
-  Research-backed article writing workflow with customizable style guides and citations.
-  Use this skill whenever the user wants to write articles, blog posts, essays, thought leadership
-  pieces, or any long-form content — even if they don't explicitly say "article." Also use when
-  the user wants to do web research for a writing project, manage writing styles, or resume a draft.
-  Handles the full workflow: topic ideation with exploratory research, comprehensive research planning,
-  thesis development, outlining, section-by-section writing with citations, article metadata generation,
-  and markdown export. Also handles style guide management and draft management including commands like
-  "list writing styles", "create a new article style", "edit my writing style", "delete style",
-  "show my drafts", "continue my article", "show my articles", "show my archive",
-  or "re-export the X article".
+  Article writing and draft management tool. Activate for these exact commands:
+  "show my drafts", "show my archive", "show my articles", "list my writing styles",
+  "create a new article style", "edit style", "delete style", "continue my article",
+  "re-export". Also activate whenever someone wants to write, plan, outline, or research
+  a blog post, article, essay, or thought leadership piece — any long-form written content
+  about a topic. This includes casual requests like "I want to write about X" or "help me
+  structure a post about Y." Covers topic ideation, research, outlining, drafting, style
+  guide management, and export. NOT for emails, social media, API docs, slide decks,
+  summaries, or PRDs.
 license: LICENSE.md
 metadata:
   author: ibuildwith.ai
