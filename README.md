@@ -267,7 +267,7 @@ See [LICENSE.md](LICENSE.md) for complete terms.
 
 ## Release Notes
 
-See [Release Notes.md](Release%20Notes.md) for version history and updates.
+See [release-notes.md](release-notes.md) for version history and updates.
 
 ## Links
 
